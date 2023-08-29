@@ -1,0 +1,17 @@
+.hero-text {
+    color: #1A5062;
+    text-transform: capitalize;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.btn {
+    color: white;
+    background-color: #1A5062;
+    padding: 20px 60px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    box-shadow: 0 0 1rem #1A5062;
+}
