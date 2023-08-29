@@ -1,3 +1,15 @@
+*,*::after,*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: "Poppins" , serif;
+}
+
+
 .hero-text {
     color: #1A5062;
     text-transform: capitalize;
@@ -15,3 +27,4 @@
     font-size: 1rem;
     box-shadow: 0 0 1rem #1A5062;
 }
+
