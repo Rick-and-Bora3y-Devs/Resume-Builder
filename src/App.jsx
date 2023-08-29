@@ -1,10 +1,7 @@
 import React from "react";
-import Page1 from "./Pages/Page1";
 
 function App() {
-  return (
-    <Page1 />
-  );
+  return null;
 }
 
-export default App
+export default App;
