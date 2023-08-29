@@ -1,0 +1,60 @@
+.Error{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.para{
+    font-weight: bold;
+}
+
+
+.btn{
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1vw;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color: rgb(141, 141, 145);
+    color: black;
+}
+
+
+.four{
+    width: 200px;
+}
+
+.avatar{
+    width: 300px;
+}
+
+@media (max-width : 800px) {
+    .four{
+        width: 100px;
+    }
+
+    .avatar{
+        width: 150px;
+    }
+}
+
+
+@media (max-width : 400px) {
+    .four{
+        width: 70px;
+    }
+
+    .avatar{
+        width: 100px;
+    }
+}
+
+.para{
+    text-align: center;
+}
