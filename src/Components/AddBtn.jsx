@@ -1,26 +1,12 @@
 
-const testStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-}
-
-const buttonStyle = {
-    fontSzize: "1.5rem",
-    padding: "1rem 1rem",
-    color: "#2B6681",
-    borderStyle: "solid",
-    borderWidth: "2px",
-    borderColor: "#2B6681"
-}
-
+import styles from '../Css/AddBtn.module.css';
 
 function AddBtn(){
     return(
-        <div style={testStyle}>
-            <button style={buttonStyle}>Add A Professional Summary</button>
-        </div>
+        <button className={styles.btn}>
+            <div className={styles.btnText}>Add A Professional Summary</div>
+            <div className={styles.circle}>+</div>
+        </button>
     )
 }
 
