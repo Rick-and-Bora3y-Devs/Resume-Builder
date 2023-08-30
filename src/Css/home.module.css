@@ -1,0 +1,52 @@
+.container {
+    height: 100vh !important;
+    background-color:hsla(0,0%,100%,1);
+    background-image:
+    radial-gradient(at 28% 64%, hsla(192,16%,93%,1) 0px, transparent 50%),
+    radial-gradient(at 67% 6%, hsla(190,30%,89%,1) 0px, transparent 50%),
+    radial-gradient(at 18% 4%, hsla(197,61%,74%,1) 0px, transparent 50%);
+    /* background-image: url(../Assets/cover.svg); */
+    background-size: cover;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+
+}
+
+.cover1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.cover2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-left: 10%;
+    width: 50%;
+    z-index: 1;
+}
+
+.container h1 {
+    line-height: 110%;
+}
+
+.content p {
+    width: 60%;
+}
+
+.logo {
+    color: #1A5062;
+    font-family: "Poppins" , serif;
+    font-weight: 600;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
