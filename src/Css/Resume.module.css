@@ -103,7 +103,7 @@ html{
     font-weight: 700;
     color: #355D6F; 
     
-    justify-self: flex-start;
+    /* align-self: start; */
 }
 
 .Inputs{
@@ -139,3 +139,9 @@ html{
     outline: none;
 }
 
+
+/* Summary */
+
+.Summary {
+    display: flex;
+}
