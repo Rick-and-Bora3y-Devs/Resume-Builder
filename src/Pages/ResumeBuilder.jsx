@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import AddBtn from "../Components/AddBtn.jsx";
+import SaveCancelBtn from "../Components/saveCancelBtn.jsx";
+import TextEditor from "../Components/TextEditor.jsx";
 import styles from "../Css/Resume.module.css";
 import Template1 from "../Components/Templates/Template1.jsx";
 import Template2 from "../Components/Templates/Template2.jsx";
 import Template3 from "../Components/Templates/Template3.jsx";
-
-import AddBtn from "../Components/AddBtn";
 
 function ResumeBuilder()
 {
@@ -65,9 +65,9 @@ function ResumeBuilder()
                     
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Professional Summaries</h1>
-
                         <AddBtn />
-
+                        {/* <TextEditor /> */}
+                        <SaveCancelBtn />
                     </div>
 
 
