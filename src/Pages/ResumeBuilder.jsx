@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import AddBtn from "../Components/AddBtn.jsx";
 import styles from "../Css/Resume.module.css";
 import Template1 from "../Components/Templates/Template1.jsx";
 import Template2 from "../Components/Templates/Template2.jsx";
@@ -13,7 +14,7 @@ function ResumeBuilder()
 
     return <div className={styles.Container}>
                 <div className={styles.Builder}>
-                    <div className={styles.Personal}>
+                    <div className={styles.sec}>
                         <h1 className={styles.Heading}>Personal Information</h1>
                             <div className={styles.Inputs}>
                                 <div>
@@ -60,9 +61,9 @@ function ResumeBuilder()
                     </div>
                     
                     
-                    <div className={styles.Summary}>
+                    <div className={styles.sec}>
                         <h1 className={styles.Heading}>Professional Summaries</h1>
-
+                        <AddBtn/>
                     </div>
 
 
