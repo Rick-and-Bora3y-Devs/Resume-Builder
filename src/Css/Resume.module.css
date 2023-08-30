@@ -91,20 +91,14 @@ html{
 
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    /* background-color: black; */
-}
+    gap: 30px;}
 
-.sec {
-    width: 80%;
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+    overflow: scroll;
 
 .Heading{
+    margin-top: 20px;
+    margin-left: 20px;
+
     font-size: 1.5rem;
     font-weight: 700;
     color: #355D6F; 
