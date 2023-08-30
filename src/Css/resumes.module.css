@@ -1,0 +1,36 @@
+.resumesPage {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color:hsla(0,0%,100%,1);
+    background-image:
+    radial-gradient(at 54% 68%, hsla(192,16%,93%,1) 0px, transparent 50%),
+    radial-gradient(at 72% 20%, hsla(190,30%,89%,1) 0px, transparent 50%),
+    radial-gradient(at 35% 2%, hsla(197,61%,74%,1) 0px, transparent 50%);
+}
+
+.container {
+    align-items: center;
+    width: 85%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.templates {
+    display: flex;
+    padding: 3rem;
+    height: 60vh;
+    justify-content: space-around;
+}
+
+.templates * {
+    height: 100%;
+    object-fit: fill;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.templates img:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.514);
+    transform: scale(1.1);
+}
