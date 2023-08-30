@@ -1,0 +1,141 @@
+
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+.Preview{
+    position: fixed;
+
+    height: 100vh;
+    width: 50vw;
+
+    top: 0;
+    left: 50%;
+    background-color: rgba(213, 239, 250, 0.4);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* overflow: auto; */
+}
+
+
+.Controls{
+
+    margin-top: 20px;
+
+    height: 10vh;
+    width: 50vw;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.Choose{
+    color: white;
+    background-color: #355D6F;
+    box-shadow: 0 0 1rem #1A5062;    
+
+    border: none;
+    border-radius: 20px;
+
+    transition: transform 0.2s;
+    padding: 10px 20px;
+}
+
+
+.Download{
+    color: #355D6F;
+    background-color: white;
+
+    border: 1px solid #355D6F;
+    border-radius: 20px;
+
+    transition: transform 0.2s;
+    padding: 10px 20px;
+}
+
+
+.Download:hover,.Choose:hover{
+    transform: scale(1.05);
+}
+
+
+.resume{
+    background-color: white;
+    border: 1px solid black;
+    transform: translateY(-200px) scaleX(0.45) scaleY(0.45);
+
+    -webkit-box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
+}
+
+
+/* Builder Styling */
+
+/* Personal info */
+.Builder{
+    position: fixed;
+    left: 0;
+
+    height: 100vh;
+    width: 50vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* background-color: black; */
+}
+
+.Heading{
+    margin-top: 20px;
+    margin-left: 20px;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #355D6F; 
+    
+    justify-self: flex-start;
+}
+
+.Inputs{
+
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+
+    display: grid;
+    grid-template-columns: 255px 255px;
+    gap: 30px;
+}
+
+.Inputs div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.Inputs div label {
+    font-size: 0.8rem;
+    opacity: 50%;
+}
+
+.Inputs input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #355d6f85;
+    box-shadow: 0px 2px 4px 0px #355d6f1a;
+}
+
+.Inputs input:focus{
+    outline: none;
+}
+
