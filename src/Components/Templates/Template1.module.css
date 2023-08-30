@@ -1,6 +1,6 @@
 .container {
     margin: 2rem auto;
-    width: 60%;
+    width: 80%;
     font-family: 'Poppins', sans-serif;
     font-size: smaller;
     display: flex;
@@ -14,7 +14,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.123);
 }
 
-h3 {
+.header3 {
     font-weight: normal;
     text-transform: uppercase;
     font-size: smaller;
@@ -22,12 +22,12 @@ h3 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.123);
 }
 
-h2 {
+.header2 {
     font-size: 1rem;
     margin: 0%;
 }
 
-p {
+.paragragh {
     margin: 0;
 }
 
