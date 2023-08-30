@@ -88,16 +88,21 @@ html{
     height: 100vh;
     width: 50vw;
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
+
+    overflow: scroll;
 
     /* background-color: black; */
 }
 
+.sec{
+    margin-left: 20px;
+}
+
 .Heading{
     margin-top: 20px;
-    margin-left: 20px;
 
     font-size: 1.5rem;
     font-weight: 700;
@@ -107,8 +112,6 @@ html{
 }
 
 .Inputs{
-
-    margin-left: 20px;
     margin-top: 20px;
     margin-right: 20px;
 
