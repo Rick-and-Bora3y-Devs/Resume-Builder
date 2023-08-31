@@ -83,7 +83,7 @@ function ResumeBuilder()
                             </div>
 
                             <div>
-                                <label>Degree</label>
+                                <label>Company</label>
                                 <input type="text" placeholder="Degree" />
                             </div>
 
@@ -112,6 +112,33 @@ function ResumeBuilder()
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Education</h1>
                         <AddBtn text={"Add Education"}/>
+                        <div className={styles.Inputs}>
+                            <div>
+                                <label>Educational Inisitution</label>
+                                <input type="text" placeholder="Position" />
+                            </div>
+
+                            <div>
+                                <label>Degree</label>
+                                <input type="text" placeholder="Degree" />
+                            </div>
+
+                            <div className={styles.dates}>
+                                <div className={styles.start}>
+                                    <label>Start Date</label>
+                                    <input type="text" placeholder="Start Date" />
+                                </div>
+                                <div className={styles.end}>
+                                    <label>End Date</label>
+                                    <input type="text" placeholder="End Date" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label>City</label>
+                                <input type="text" placeholder="City" />
+                            </div>
+                        </div>
                         <SaveCancelBtn />
                     </div>
 
