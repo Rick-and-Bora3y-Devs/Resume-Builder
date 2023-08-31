@@ -1,0 +1,24 @@
+.buttons {
+    border-top: 1px solid #224d61af;
+    padding-top: 15px;
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+    
+}
+
+.save {
+    padding: 3px 40px;
+    border: none;
+    color: white;
+    background-color: #224D61;
+}
+
+.cancel {
+    padding: 3px 30px;
+    border: 1px solid #2B6681;
+    color: #2B6681;
+    font-weight: 700;
+    background-color: white;
+    font-family: 'Noto Sans', sans-serif;
+}

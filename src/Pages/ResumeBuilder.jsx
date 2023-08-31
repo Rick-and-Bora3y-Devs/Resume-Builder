@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import AddBtn from "../Components/AddBtn.jsx";
+import SaveCancelBtn from "../Components/saveCancelBtn.jsx";
+import TextEditor from "../Components/TextEditor.jsx";
 import styles from "../Css/Resume.module.css";
 import Template1 from "../Components/Templates/Template1.jsx";
 import Template2 from "../Components/Templates/Template2.jsx";
@@ -58,171 +60,207 @@ function ResumeBuilder()
                                </div>
                                            
                             </div>
+                        <SaveCancelBtn />
                     </div>
                     
                     
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Professional Summaries</h1>
                         <AddBtn text={"Add Professional Summary"}/>
+                        <TextEditor />
+                        <br />
+                        <SaveCancelBtn />
                     </div>
 
 
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Work Experience</h1>
                         <AddBtn text={"Add Professional Experience"}/>
-
-                        <div>
-                            <label>Position</label>
-                            <input type="text" placeholder="Position" />
-                        </div>
-
-                        <div>
-                            <label>Degree</label>
-                            <input type="text" placeholder="Degree" />
-                        </div>
-
-                        <div>
+                        <div className={styles.Inputs}>
                             <div>
-                                <label>Start Date</label>
-                                <input type="text" placeholder="Start Date" />
+                                <label>Position</label>
+                                <input type="text" placeholder="Position" />
                             </div>
+
                             <div>
-                                <label>End Date</label>
-                                <input type="text" placeholder="End Date" />
+                                <label>Degree</label>
+                                <input type="text" placeholder="Degree" />
+                            </div>
+
+                            <div className={styles.dates}>
+                                <div className={styles.start}>
+                                    <label>Start Date</label>
+                                    <input type="text" placeholder="Start Date" />
+                                </div>
+                                <div className={styles.end}>
+                                    <label>End Date</label>
+                                    <input type="text" placeholder="End Date" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label>City</label>
+                                <input type="text" placeholder="City" />
                             </div>
                         </div>
-
-                        <div>
-                            <label>City</label>
-                            <input type="text" placeholder="City" />
-                        </div>                        
+                        <TextEditor />
+                        <br/>
+                        <SaveCancelBtn />         
                     </div>
 
 
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Education</h1>
                         <AddBtn text={"Add Education"}/>
+                        <SaveCancelBtn />
                     </div>
 
                     <div className={styles.sec}>
                         <h1 className={styles.Heading}>Languages</h1>
                         <AddBtn text={"Add Language"}/>
-                        <div>
-                            <label>Language</label>
-                            <input type="text" placeholder="Language" />
-                        </div>
+                        <div className={styles.Inputs}>
+                            <div>
+                                <label>Language</label>
+                                <input type="text" placeholder="Language" />
+                            </div>
 
-                        <div>
-                            <label>Proficiency</label>
-                            <input type="text" placeholder="Proficiency" />
+                            <div>
+                                <label>Proficiency</label>
+                                <input type="text" placeholder="Proficiency" />
+                            </div>
                         </div>
+                        <TextEditor />
+                        <br/>
+                        <SaveCancelBtn />
                     </div>
 
                 <div className={styles.sec}>
                     <h1 className={styles.Heading}>Certifications</h1>
                     <AddBtn text={"Add Certification"}/>
-                    <div>
-                        <label>Certification</label>
-                        <input type="text" placeholder="Certification" />
-                    </div>
 
-                    <div>
-                        <label>Provider</label>
-                        <input type="text" placeholder="Provider" />
-                    </div>
+                    <div className={styles.Inputs}>
+                        <div>
+                            <label>Certification</label>
+                            <input type="text" placeholder="Certification" />
+                        </div>
 
-                    <div>
-                        <label>Start Date</label>
-                        <input type="text" placeholder="Start Date" />
-                    </div>
+                        <div>
+                            <label>Provider</label>
+                            <input type="text" placeholder="Provider" />
+                        </div>
 
-                    <div>
-                        <label>End Date</label>
-                        <input type="text" placeholder="End Date" />
+                        <div>
+                            <label>Start Date</label>
+                            <input type="text" placeholder="Start Date" />
+                        </div>
+
+                        <div>
+                            <label>End Date</label>
+                            <input type="text" placeholder="End Date" />
+                        </div>
                     </div>
+                    <SaveCancelBtn />
                 </div>
 
                 <div className={styles.sec}>
                     <h1 className={styles.Heading}>Courses</h1>
                     <AddBtn text={"Add A Course"}/>
-                    <div>
-                        <label>Course</label>
-                        <input type="text" placeholder="Course" />
-                    </div>
+                    <div className={styles.Inputs}>
+                        <div>
+                            <label>Course</label>
+                            <input type="text" placeholder="Course" />
+                        </div>
 
-                    <div>
-                        <label>Provider</label>
-                        <input type="text" placeholder="Provider" />
-                    </div>
+                        <div>
+                            <label>Provider</label>
+                            <input type="text" placeholder="Provider" />
+                        </div>
 
-                    <div>
-                        <label>Start Date</label>
-                        <input type="text" placeholder="Start Date" />
-                    </div>
+                        <div>
+                            <label>Start Date</label>
+                            <input type="text" placeholder="Start Date" />
+                        </div>
 
-                    <div>
-                        <label>End Date</label>
-                        <input type="text" placeholder="End Date" />
+                        <div>
+                            <label>End Date</label>
+                            <input type="text" placeholder="End Date" />
+                        </div>
                     </div>
+                    <TextEditor />
+                    <br/>
+                    <SaveCancelBtn />
                 </div>
             
 
                 <div className={styles.sec}>
                     <h1 className={styles.Heading}>Projects</h1>
                     <AddBtn text={"Add A Project"}/>
-                    <div>
-                        <label>Project</label>
-                        <input type="text" placeholder="Course" />
-                    </div>
+                    <div className={styles.Inputs}>
+                        <div>
+                            <label>Project</label>
+                            <input type="text" placeholder="Course" />
+                        </div>
 
-                    <div>
-                        <label>Organization</label>
-                        <input type="text" placeholder="Provider" />
-                    </div>
+                        <div>
+                            <label>Organization</label>
+                            <input type="text" placeholder="Provider" />
+                        </div>
 
-                    <div>
-                        <label>Start Date</label>
-                        <input type="text" placeholder="Start Date" />
-                    </div>
+                        <div>
+                            <label>Start Date</label>
+                            <input type="text" placeholder="Start Date" />
+                        </div>
 
-                    <div>
-                        <label>End Date</label>
-                        <input type="text" placeholder="End Date" />
+                        <div>
+                            <label>End Date</label>
+                            <input type="text" placeholder="End Date" />
+                        </div>
                     </div>
+                    <TextEditor />
+                    <br/>
+                    <SaveCancelBtn />
                 </div>
 
                 
                 <div className={styles.sec}>
                     <h1 className={styles.Heading}>Volunteering</h1>
                     <AddBtn text={"Add Experience"}/>
-                    <div>
-                        <label>Organization</label>
-                        <input type="text" placeholder="Course" />
-                    </div>
+                    <div className={styles.Inputs}>
+                        <div>
+                            <label>Organization</label>
+                            <input type="text" placeholder="Course" />
+                        </div>
 
-                    <div>
-                        <label>Involvment</label>
-                        <input type="text" placeholder="Provider" />
-                    </div>
+                        <div>
+                            <label>Involvment</label>
+                            <input type="text" placeholder="Provider" />
+                        </div>
 
-                    <div>
-                        <label>Start Date</label>
-                        <input type="text" placeholder="Start Date" />
-                    </div>
+                        <div>
+                            <label>Start Date</label>
+                            <input type="text" placeholder="Start Date" />
+                        </div>
 
-                    <div>
-                        <label>End Date</label>
-                        <input type="text" placeholder="End Date" />
+                        <div>
+                            <label>End Date</label>
+                            <input type="text" placeholder="End Date" />
+                        </div>
                     </div>
+                    <TextEditor />
+                    <br/>
+                    <SaveCancelBtn />
                 </div>
 
                 <div className={styles.sec}>
                     <h1 className={styles.Heading}>Skills</h1>
                     <AddBtn text={"Add A Skill"}/>
-                    <div>
-                        <label>New Skill</label>
-                        <input type="text"/>
+                    <div className={styles.Inputs}>
+                        <div className={styles.skill}>
+                            <label>New Skill</label>
+                            <input type="text"/>
+                        </div>
                     </div>
+                    <SaveCancelBtn />
                 </div>
 
 
@@ -237,6 +275,7 @@ function ResumeBuilder()
                 <div className={styles.resume}>
                         {template === 1 && <Template1/>}
                 </div>
+                <SaveCancelBtn />
             </div>
         </div>
 
