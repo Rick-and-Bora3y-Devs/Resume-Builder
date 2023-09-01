@@ -9,7 +9,7 @@ import ResumeBuilder from './Pages/ResumeBuilder.jsx'
 import Home from './Pages/Home.jsx'
 import Resumes from './Pages/Resumes.jsx'
 import Error from './Error.jsx'
-
+import Test from './Test.jsx'
 
 const router = createBrowserRouter(
   [
@@ -25,6 +25,10 @@ const router = createBrowserRouter(
     {
       path: '/resumes',
       element: <Resumes/>
+    },
+    {
+      path: '/Test',
+      element: <Test/>
     }
   ]
 )
