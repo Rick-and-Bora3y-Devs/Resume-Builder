@@ -31,40 +31,96 @@ function Experience(){
 }
 
 
-function ExperienceForm()
+function ExperienceForm(props)
 {
-    return  <><div className={styles.Inputs}>
+
+    const [workSection, setWorkSection] = useState({
+        position: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        city: "",
+    });
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+
+        setWorkSection(prevValue => {
+            return {
+                ...prevValue,
+                [name]: value
+            }
+        });
+    }
+
+    function SubmitChanges() {
+        props.addWork(workSection);
+    }
+
+    return  <div className={styles.sec}><div className={styles.Inputs}>
             <div>
                 <label>Position</label>
-                <input type="text" placeholder="Position" />
+                <input 
+                type="text" 
+                name="position" 
+                value={workSection.position} 
+                onChange={handleChange} 
+                placeholder="Position" 
+                />
             </div>
 
             <div>
                 <label>Degree</label>
-                <input type="text" placeholder="Degree" />
+                <input 
+                type="text" 
+                name="degree" 
+                value={workSection.degree} 
+                onChange={handleChange} 
+                placeholder="Degree" />
+
             </div>
 
             <div className={styles.dates}>
                 <div className={styles.start}>
                     <label>Start Date</label>
-                    <input type="text" placeholder="Start Date" />
+                    <input 
+                    type="text" 
+                    name="startDate" 
+                    value={workSection.startDate} 
+                    onChange={handleChange} 
+                    placeholder="Start Date
+                    " />
                 </div>
                 <div className={styles.end}>
                     <label>End Date</label>
-                    <input type="text" placeholder="End Date" />
+                    <input 
+                    type="text" 
+                    name="endDate" 
+                    value={workSection.endDate} 
+                    onChange={handleChange} 
+                    placeholder="End Date" 
+
+                    />
                 </div>
             </div>
             <div>
                 <label>City</label>
-                <input type="text" placeholder="City" />
+                <input 
+                type="text" 
+                name="city" 
+                value={workSection.city} 
+                onChange={handleChange} 
+                placeholder="City" />
+ 
             </div>
             </div>
 
             <TextEditor />
             <br/>
-            <SaveCancelBtn />  
-            </>
+            <SaveCancelBtn onClick={SubmitChanges}/>  
+            </div>
 }
 
 
 export default Experience;
+export {ExperienceForm};

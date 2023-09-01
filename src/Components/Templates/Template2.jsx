@@ -1,76 +1,120 @@
 import React from "react";
 import Style from "./Template2.module.css"
 
-function Template2() {
+function Template2(props) {
     return (
         <div className={Style.container}>
+
+            {props.personalInfo.firstName &&
+
             <div className={Style.personalInfo}>
-                <h1 className={Style.header1}>Albert Mondego</h1>
-                <p>city, country • +330 12345678 • username@gmail.com</p>
-            </div>
+                <h1 className={Style.header1}>
+                    {props.personalInfo.firstName} {" "}
+                    {props.personalInfo.secondName}
+                </h1>
+                <p>
+                    {props.personalInfo.city + ","}
+                    {props.personalInfo.country} • 
+                    {props.personalInfo.phoneNumber} • 
+                    {props.personalInfo.email}
+                </p>
+            </div>}
            
+            {props.summary &&
             <p className={Style.professionalSummaries}>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
             Doloremque!
-            </p>
+            </p>}
            
+            {props.workInfo.position &&
             <div className={Style.workExperience}>
-                <h2 className={Style.header2}>WORK EXPERIENCE</h2>
-                <div><h3 className={Style.header3}>Company name</h3> • 02/2019 - 11/2023</div>
+                <h2 className={Style.header3}>WORK EXPERIENCE</h2>
+                <div>
+                <h3 className={Style.header2}>{props.workInfo.degree}</h3> • 
+                {props.workInfo.startDate} - 
+                {props.workInfo.endDate}
+                </div>
                 <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
                 Doloremque!</p>
-                <p>Jot title</p>
-            </div>
+                <p>{props.workInfo.position}</p>
+            </div>}
 
+            {props.educationInfo.institute && 
             <div>
-                <h2 className={Style.header2}>EDUCATION</h2>
-                <h3 className={Style.header3}>field of study</h3>
-                <p>Educational Institution • 09/2022-07/2026</p>
-            </div>
+                <h2 className={Style.header3}>EDUCATION</h2>
+                <h3 className={Style.header2}>{props.educationInfo.institute}</h3>
+                <p>
+                    {props.educationInfo.degree} • 
+                    {props.educationInfo.startDate} - 
+                    {props.educationInfo.endDate}
+                </p>
+            </div>}
 
+            {props.volunteeringInfo.organization &&
             <div>
-                <h2 className={Style.header2}>Volunteering & leadership</h2>
-                <h3 className={Style.header3}>Organization</h3>
-                <p>involvement • Cairo, Egypt • 03/2021 - 06/2023</p>
+                <h3 className={Style.header3}>Volunteering & leadership</h3>
+                <h2 className={Style.header2}>{props.volunteeringInfo.organization}</h2>
+                <p>
+                    {props.volunteeringInfo.involvement} • 
+                    {props.volunteeringInfo.startDate} - 
+                    {props.volunteeringInfo.endDate}
+                </p>
                 <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
                 Doloremque!</p>
-            </div>
+            </div>}
 
+            {props.skillsInfo && 
             <div>
-                <h2 className={Style.header2}>SKILLS</h2>
-                <p>skill, skill, skill, skill, skill, skill, 
-                skill, skill, skill, skill, skill, skill, 
-                skill, skill, skill, skill, skill, skill, skill, skill</p>
-            </div>
+                <h2 className={Style.header3}>SKILLS</h2>
+                <p>{props.skillsInfo}</p>
+            </div>}
 
+            {props.certificationsInfo.certification &&
             <div>
-                <h2 className={Style.header2}>CERTIFICATIONS</h2>
-                <h3 className={Style.header3}>certification</h3>
-                <p>Provider • 07/2023 - 9/2023</p>
-            </div>
+                <h2 className={Style.header3}>CERTIFICATIONS</h2>
+                <h3 className={Style.header2}>{props.certificationsInfo.certification}</h3>
+                <p>
+                    {props.certificationsInfo.provider} • 
+                    {props.certificationsInfo.startDay} - 
+                    {props.certificationsInfo.endDate}
+                </p>
+            </div>}
 
+            {props.projectsInfo.project && 
             <div>
-                <h2 className={Style.header2}>PROJECTS</h2>
-                <h3 className={Style.header3}>projects name</h3>
-                <p>Organization • 02/2023 - 04/2023</p>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
-            </div>
+                <h2 className={Style.header3}>PROJECTS</h2>
+                <h3 className={Style.header2}>{props.projectsInfo.project}</h3>
+                <p>
+                    {props.projectsInfo.organization} • 
+                    {props.projectsInfo.startDate} - 
+                    {props.projectsInfo.endDate}
+                </p>
+                <p className={Style.description}>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
+                    Doloremque!
+                </p>
+            </div>}
 
+            {props.coursesInfo.courses &&
             <div>
-                <h2 className={Style.header2}>COURSES</h2>
-                <h3 className={Style.header3}>course</h3>
-                <p>Institution • 02/2023 - 09/2023</p>
-            </div>
+                <h2 className={Style.header3}>COURSES</h2>
+                <h3 className={Style.header2}>{props.coursesInfo.courses}</h3>
+                <p>
+                    {props.coursesInfo.provider} • 
+                    {props.coursesInfo.startDate} - 
+                    {props.coursesInfo.endDate}
+                </p>
+            </div>}
         
-            <div>
-                <h2 className={Style.header2}>LANGUAGES</h2>
-                <p>language • level</p>
-            </div>
+            {props.language &&
+             <div>
+                <h3 className={Style.header3}>LANGUAGES</h3>
+                <p>{props.language} • {props.proficiency}</p>
+            </div>}
         </div>
     );
 }

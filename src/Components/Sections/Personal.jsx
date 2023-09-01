@@ -5,9 +5,35 @@ import styles from "../../Css/Resume.module.css";
 
 //Components
 import SaveCancelBtn from "../saveCancelBtn.jsx";
+import { useState } from "react";
 
+function PersonalInfo(props){
 
-function PersonalInfo(){
+    const [personalSection, setPersonalSection] = useState({
+        firstName : " ",
+        secondName : " ",
+        email : " ",
+        phoneNumber : " ",
+        country : " ",
+        city : " ",
+        linkedIn : " ",
+        website : " ",
+    });
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+
+        setPersonalSection(prevValue => {
+            return {
+                ...prevValue,
+                [name]: value
+            }
+        });
+    }
+
+    function SubmitChanges() {
+        props.addPersonalInfo(personalSection);
+    }
 
     return <>
         <div className={styles.sec}>
@@ -15,46 +41,95 @@ function PersonalInfo(){
             <div className={styles.Inputs}>
                 <div>
                     <label>First Name</label>
-                    <input name="First Name" type="text" placeholder="First Name"/>
+                    <input
+                    name="firstName"
+                    value={personalSection.firstName}
+                    onChange={handleChange}
+                    type="text"
+                    placeholder="First Name"
+                    required
+                    />
                 </div>
             
                 <div>
                     <label>Second Name</label>
-                    <input type="text" placeholder="Last Name"/>
+                    <input
+                    type="text"
+                    name="secondName"
+                    value={personalSection.secondName}
+                    onChange={handleChange}
+                    placeholder="Last Name"
+                    required
+                    />
                 </div>
                 
                 <div>
                     <label>Email</label>
-                    <input type="text" placeholder="Email"/>
+                    <input
+                    type="email"
+                    name="email"
+                    value={personalSection.email}
+                    onChange={handleChange}
+                    placeholder="Email"                        
+                    />
                 </div>
                 
                 <div>
                     <label>Phone Number</label>
-                    <input type="text" placeholder="Phone Number"/>
+                    <input
+                    type="text"
+                    name="phoneNumber"
+                    value={personalSection.phoneNumber}
+                    onChange={handleChange}
+                    placeholder="Phone Number"                        
+                    />
                 </div>
             
-            <div>
+                <div>
                     <label>Country</label>
-                    <input type="text" placeholder="Country"/>
-            </div>
+                    <input
+                    type="text"
+                    name="country"
+                    value={personalSection.country}
+                    onChange={handleChange}
+                    placeholder="Country"
+                    />
+                </div>
             
-            <div>
+                <div>
                     <label>City</label>
-                    <input type="text" placeholder="City"/> 
-            </div>
+                    <input
+                    type="text"
+                    name="city"
+                    value={personalSection.city}
+                    onChange={handleChange}
+                    placeholder="City"
+                    /> 
+                </div>
                 
                 <div>
                     <label>Linkedin</label>
-                    <input type="text" placeholder="Linkedin"/>
+                    <input
+                    type="text"
+                    name="linkedIn"
+                    value={personalSection.linkedIn}
+                    onChange={handleChange}
+                    placeholder="Linkedin"
+                    />
                 </div>
             
-            <div>
+                <div>
                     <label>Website</label>
-                    <input type="text" placeholder="Website"/>       
-            </div>
+                    <input
+                    type="text"
+                    name="website" 
+                    value={personalSection.website} 
+                    onChange={handleChange} 
+                    placeholder="Website"/>       
+                </div>
                         
             </div>
-        <SaveCancelBtn />
+        <SaveCancelBtn onClick={SubmitChanges}/>
         </div>
     </>
 }

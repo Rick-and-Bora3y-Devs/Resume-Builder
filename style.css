@@ -33,3 +33,11 @@ body{
 .btn:hover {
     transform: scale(1.05);
 }
+
+::placeholder {
+    opacity: 1;
+  }
+
+input {
+    font-family: "Poppins" , serif;;
+}

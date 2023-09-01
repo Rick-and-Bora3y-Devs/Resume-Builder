@@ -6,8 +6,32 @@ import AddBtn from "../AddBtn.jsx";
 import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+import { useState } from "react";
 
-function Courses() {
+function Courses(props) {
+
+    const [coursesSection, setCoursesSection] = useState({
+        courses: "",
+        provider: "",
+        startDate: "",
+        endDate: "",
+    });
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+
+        setCoursesSection(prevValue => {
+            return {
+                ...prevValue,
+                [name]: value
+            }
+        });
+    }
+
+    function SubmitChanges() {
+        props.addCourses(coursesSection);
+    }
+
     return (
         <div className={styles.sec}>
         <h1 className={styles.Heading}>Courses</h1>
@@ -15,27 +39,51 @@ function Courses() {
         <div className={styles.Inputs}>
             <div>
                 <label>Course</label>
-                <input type="text" placeholder="Course" />
+                <input 
+                type="text" 
+                value={coursesSection.courses} 
+                name="courses" 
+                onChange={handleChange} 
+                placeholder="Course" 
+                />
             </div>
 
             <div>
                 <label>Provider</label>
-                <input type="text" placeholder="Provider" />
+                <input 
+                type="text" 
+                value={coursesSection.provider} 
+                name="provider" 
+                onChange={handleChange} 
+                placeholder="Provider"
+                />
             </div>
 
             <div>
                 <label>Start Date</label>
-                <input type="text" placeholder="Start Date" />
+                <input 
+                type="month" 
+                value={coursesSection.startDate} 
+                name="startDate" 
+                onChange={handleChange} 
+                placeholder="Start Date"  
+                />
             </div>
 
             <div>
                 <label>End Date</label>
-                <input type="text" placeholder="End Date" />
+                <input
+                type="month"
+                value={coursesSection.endDate}
+                name="endDate"
+                onChange={handleChange}
+                placeholder="End Date"   
+                />
             </div>
         </div>
         <TextEditor />
         <br/>
-        <SaveCancelBtn />
+        <SaveCancelBtn onClick={SubmitChanges}/>
     </div>)
 }
 
