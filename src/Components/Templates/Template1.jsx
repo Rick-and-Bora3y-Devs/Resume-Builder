@@ -6,16 +6,16 @@ function Template1(props) {
         <div className={Style.container}>
         
 
-            {props.personalInfo.firstName &&
+            {props.personalInfo &&
 
             <div className={Style.personalInfo}>
                 <h1 className={Style.header1}>
-                    {props.personalInfo.firstName}
-                    {" " + props.personalInfo.secondName}
+                    {props.personalInfo.firstName + " "}
+                    {props.personalInfo.secondName}
                 </h1>
                 <p>
                     {props.personalInfo.city}, 
-                    {props.personalInfo.country && <p>{props.personalInfo.country}</p>}
+                    {props.personalInfo.country} • 
                     {props.personalInfo.phoneNumber} • 
                     {props.personalInfo.email}
                 </p>

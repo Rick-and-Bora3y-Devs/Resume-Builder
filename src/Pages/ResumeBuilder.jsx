@@ -110,8 +110,14 @@ function ResumeBuilder()
         });
     }
 
-    return <div className={styles.Container}>
+    function chooseTemplate(id) {
+        setTemplate(id);
+        setHide(hide === true ? false : true);
+    }
+
+    return  <div className={styles.Container}>
                 <div className={styles.Builder}>
+                    {!hide && <>
                     <PersonalInfo addPersonalInfo={addPersonalInfo}/>                    
                     <Summary/>
                     <Experience />
@@ -124,13 +130,26 @@ function ResumeBuilder()
                     <Projects addProjects={addProjects}/>
                     <Volunteering addVolunteering={addVolunteering}/>
                     <Skills addSkills={addSkills}/>
+                    </>}
+
+                    {hide && <div className={styles.templateMenu}>
+                        <h1>Templates</h1>
+                        <div className={styles.templates}>
+                            <img onClick={()=>{chooseTemplate(1)}} className={styles.template} src={template1} />
+                            <img onClick={()=>{chooseTemplate(2)}} className={styles.template} src={template2} />
+                            <img onClick={()=>{chooseTemplate(3)}} className={styles.template} src={template3} />
+                        </div>
+                    </div>}
                 </div>
 
                 <div className={styles.Preview}>
                     <div className={styles.Controls}>
-                    <Link to='/resumes'><button className={styles.Choose}>Choose Template</button></Link>
+                        <button onClick={()=>{setHide(hide === true ? false : true)}} className={styles.Choose}>Choose Template</button>
                         <button className={styles.Download}>Download As PDF</button>
                     </div>
+
+                   
+
                     <div className={styles.resume}>
                         {
                             template === 1 ?
