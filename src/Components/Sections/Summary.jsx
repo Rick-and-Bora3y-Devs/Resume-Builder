@@ -10,7 +10,7 @@ function Summary(){
     return(
             <div className={styles.sec}>
                 <h1 className={styles.Heading}>Professional Summaries</h1>
-                <AddBtn text={"Add Professional Summary"}/>
+                {/* <AddBtn text={"Add Professional Summary"}/> */}
                 <TextEditor />
                 <br />
                 <SaveCancelBtn />

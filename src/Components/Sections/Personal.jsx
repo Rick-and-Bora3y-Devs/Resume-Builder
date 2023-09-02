@@ -5,7 +5,7 @@ import styles from "../../Css/Resume.module.css";
 
 //Components
 import SaveCancelBtn from "../saveCancelBtn.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function PersonalInfo(props){
 
@@ -34,6 +34,7 @@ function PersonalInfo(props){
     function SubmitChanges() {
         props.addPersonalInfo(personalSection);
     }
+
 
     return <>
         <div className={styles.sec}>

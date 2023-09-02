@@ -1,126 +1,180 @@
-//React Stuff
-import React , {useState} from "react";
-
-//Styles
-
+import React, { useEffect, useReducer, useState } from "react";
 import styles from "../../Css/resume.module.css";
-
-
-//Components
 import AddBtn from "../AddBtn.jsx";
 import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+const ActionTypes = {
+  AddExperience: "ADD_EXPERIENC",
+  EditExperience: "EDIT_EXPERIENCE",
+  DeleteExperience: "DELETE_EXPERIENCE",
+};
 
+const experienceReducer = (state, action) => {
+  switch (action.type) {
+    case ActionTypes.AddExperience:
+      return [...state, action.payload];
+    case ActionTypes.EditExperience:
+      return state;
+    case ActionTypes.DeleteExperience:
+      return state.filter((experience) => experience.id !== action.payload.id);
+    default:
+      return state;
+  }
+};
 
-function Experience(){
+let experienceIdCounter = 0;
 
-    const [experiences , setExperiences] = useState([]);
+function Experience(props) {
 
-    function addExperience(){
-        setExperiences(prev => [...prev , <ExperienceForm />])
-    }
-
-    return (<div className={styles.sec}>
-    <h1 className={styles.Heading}>Work Experience</h1>
-    <AddBtn text={"Add Professional Experience"} onClick={addExperience}/>
-
-    {experiences}
-       
-    </div>)
-}
-
-
-function ExperienceForm(props)
-{
-
-    const [workSection, setWorkSection] = useState({
-        position: "",
-        degree: "",
-        startDate: "",
-        endDate: "",
-        city: "",
+    const [isFormVisible, setFormVisible] = useState(false);
+    const [experiences, dispatch] = useReducer(experienceReducer, []);
+    const [formData, setFormData] = useState({
+        Position: "",
+        Company: "",
+        Start: "",
+        End: "",
+        City: "",
     });
 
-    function handleChange(event) {
-        const {name, value} = event.target;
 
-        setWorkSection(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            }
+    const showForm = () => {
+    if (!isFormVisible) {
+        setFormVisible(true);
+    }
+    };
+
+    const handleCancel = () => {
+        setFormData({
+            Position: "",
+            Company: "",
+            Start: "",
+            End: "",
+            City: "",
         });
-    }
+        setFormVisible(false);
+    };
 
-    function SubmitChanges() {
-        props.addWork(workSection);
-    }
+    const deleteExperience = (id) => {
+        dispatch({ type: ActionTypes.DeleteExperience, payload: { id } });
+    };
 
-    return  <div className={styles.sec}><div className={styles.Inputs}>
-            <div>
-                <label>Position</label>
-                <input 
-                type="text" 
-                name="position" 
-                value={workSection.position} 
-                onChange={handleChange} 
-                placeholder="Position" 
-                />
-            </div>
+    const editExperience = (experience) => {
+        setFormData({ ...experience });
+        showForm();
+        deleteExperience(experience.id);
+    };
 
-            <div>
-                <label>Degree</label>
-                <input 
-                type="text" 
-                name="degree" 
-                value={workSection.degree} 
-                onChange={handleChange} 
-                placeholder="Degree" />
+    const saveExperience = () => {
+        const id = experienceIdCounter;
+        experienceIdCounter++;
+        const newExperience = { id, ...formData };
 
-            </div>
+        dispatch({ type: ActionTypes.AddExperience, payload: newExperience });
+        handleCancel();
+    };
 
-            <div className={styles.dates}>
-                <div className={styles.start}>
-                    <label>Start Date</label>
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        }));
+    };
+
+
+  return (<div className={styles.sec}>
+      
+    <h1 className={styles.Heading}>Work Experience</h1>
+
+    <AddBtn onClick={showForm} text={experiences.length === 0 ? "Add Professional Experience" : "Add Another Experience"} />
+
+    {isFormVisible && (
+      <>
+        <div className={styles.Inputs}>
+                <div>
+                    <label>Position</label>
                     <input 
                     type="text" 
-                    name="startDate" 
-                    value={workSection.startDate} 
+                    name="Position" 
+                    value={formData.position} 
                     onChange={handleChange} 
-                    placeholder="Start Date
-                    " />
-                </div>
-                <div className={styles.end}>
-                    <label>End Date</label>
-                    <input 
-                    type="text" 
-                    name="endDate" 
-                    value={workSection.endDate} 
-                    onChange={handleChange} 
-                    placeholder="End Date" 
-
+                    placeholder="Position" 
                     />
                 </div>
-            </div>
-            <div>
-                <label>City</label>
-                <input 
-                type="text" 
-                name="city" 
-                value={workSection.city} 
-                onChange={handleChange} 
-                placeholder="City" />
- 
-            </div>
-            </div>
 
-            <TextEditor />
-            <br/>
-            <SaveCancelBtn onClick={SubmitChanges}/>  
-            </div>
+                <div>
+                    <label>Company</label>
+                    <input 
+                    type="text" 
+                    name="Company" 
+                    value={formData.degree} 
+                    onChange={handleChange} 
+                    placeholder="Degree" />
+
+                </div>
+
+                <div className={styles.dates}>
+                    <div className={styles.start}>
+                        <label>Start Date</label>
+                        <input 
+                        type="text" 
+                        name="Start" 
+                        value={formData.startDate} 
+                        onChange={handleChange} 
+                        placeholder="Start Date
+                        " />
+                    </div>
+                    <div className={styles.end}>
+                        <label>End Date</label>
+                        <input 
+                        type="text" 
+                        name="End" 
+                        value={formData.endDate} 
+                        onChange={handleChange} 
+                        placeholder="End Date" 
+
+                        />
+                    </div>
+                </div>
+                <div>
+                    <label>City</label>
+                    <input 
+                    type="text" 
+                    name="City" 
+                    value={formData.city} 
+                    onChange={handleChange} 
+                    placeholder="City" />
+                </div>
+        </div>
+        <TextEditor />
+        <br />
+        <SaveCancelBtn onClick={saveExperience} onCancel={handleCancel} />
+      </>
+    )}
+
+    <div>
+      {experiences.map((experience) => (
+        <div key={experience.id} className={styles.prev}>
+          <input type="checkbox" />
+          <div>
+            <h3>
+              {experience.Position} at {experience.Company}
+            </h3>
+            <h3>{experience.City}</h3>
+            <h3>
+              {experience.Start} - {experience.End}
+            </h3>
+          </div>
+          <div className={styles.controls}>
+            <button onClick={() => editExperience(experience)}>Edit</button>
+            <button onClick={() => deleteExperience(experience.id)}>Delete</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>);
+
 }
 
-
 export default Experience;
-export {ExperienceForm};
