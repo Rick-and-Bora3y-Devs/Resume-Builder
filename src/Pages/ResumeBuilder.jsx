@@ -15,14 +15,14 @@ import Template3 from "../Components/Templates/Template3.jsx";
 //Sections
 import PersonalInfo from "../Components/Sections/Personal.jsx";
 import Summary from "../Components/Sections/Summary.jsx";
-import Experience,{ExperienceForm} from "../Components/Sections/Experience.jsx";
+import Experience from "../Components/Sections/Experience.jsx";
 import Languages from "../Components/Sections/Languages.jsx";
 import Certifactes from "../Components/Sections/Certifications.jsx";
 import Projects from "../Components/Sections/Projects.jsx";
 import Volunteering from "../Components/Sections/Voulnteering.jsx";
 import Skills from "../Components/Sections/Skills.jsx";
 import Courses from "../Components/Sections/Courses.jsx";
-import Education,{EducationForm} from "../Components/Sections/Education.jsx";
+import Education from "../Components/Sections/Education.jsx";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -118,17 +118,25 @@ function ResumeBuilder()
     return  <div className={styles.Container}>
                 <div className={styles.Builder}>
                     {!hide && <>
-                    <PersonalInfo addPersonalInfo={addPersonalInfo}/>                    
+                    <PersonalInfo addPersonalInfo={addPersonalInfo}/>      
+
                     <Summary/>
-                    <Experience />
-                    <ExperienceForm addWork={addWork} />
-                    <Education/>
-                    <EducationForm addEducation={addEducation} />                    
+
+                    <Experience addWork={addWork} />
+
+                    <Education addEducation={addEducation}/>
+         
+
                     <Languages addLanguages={addLanguages}/>
+
                     <Certifactes addCertifications={addCertifications}/>
+
                     <Courses addCourses={addCourses}/>
+
                     <Projects addProjects={addProjects}/>
+
                     <Volunteering addVolunteering={addVolunteering}/>
+
                     <Skills addSkills={addSkills}/>
                     </>}
 

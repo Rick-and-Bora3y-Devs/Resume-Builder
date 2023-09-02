@@ -1,3 +1,6 @@
+// React Stuff
+import { useState , useReducer } from "react";
+
 //Styles
 import styles from "../../Css/resume.module.css";
 
@@ -6,7 +9,7 @@ import AddBtn from "../AddBtn.jsx";
 import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
-import { useState } from "react";
+
 
 function Projects(props){
 
