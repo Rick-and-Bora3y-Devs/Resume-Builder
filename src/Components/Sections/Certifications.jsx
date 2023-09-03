@@ -68,6 +68,7 @@ function Certifactes(props){
 
     const deleteCertificate = (id) => {
         dispatch({ type: ActionTypes.DeleteCertificate, payload: { id } });
+        props.deleteCertification(id);
     };
     
     const editCertificate = (certificate) => {
@@ -98,9 +99,10 @@ function Certifactes(props){
         });
     }
 
-    function SubmitChanges() {
-        props.addCertifications(certificationsSection);
-    }
+    function handleCheck(event, certificate) {
+        const checked = event.target.checked;
+        checked ? props.addCertifications(certificate) : props.deleteCertification(certificate.id);
+      }
 
     return   <div className={styles.sec}>
 
@@ -163,7 +165,7 @@ function Certifactes(props){
                 <div>
                     {certificates.map((certificate) => (
                         <div key={certificate.id} className={styles.prev}>
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={(event)=>handleCheck(event, certificate)} />
                         <div>
                             <h3>
                                 {certificate.certification} at {certificate.provider}
@@ -172,9 +174,9 @@ function Certifactes(props){
                                 {certificate.startDate} - {certificate.endDate}
                             </h3>
                         </div>
-                        <div className={styles.controls}>
-                            <button onClick={() => editCertificate(certificate)}>Edit</button>
-                            <button onClick={() => deleteCertificate(certificate.id)}>Delete</button>
+                        <div className={styles.formControls}>
+                            <button className={styles.editBtn} onClick={() => editCertificate(certificate)}>Edit</button>
+                            <button className={styles.deleteBtn} onClick={() => deleteCertificate(certificate.id)}>Delete</button>
                         </div>
                         </div>
                     ))}

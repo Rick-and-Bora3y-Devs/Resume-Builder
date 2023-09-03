@@ -60,35 +60,43 @@ function Template1(props) {
                 </div>))}
             </div>}
 
-            {props.volunteeringInfo.organization &&
+            {props.volunteeringInfo.length > 0 &&
             <div>
                 <h3 className={Style.header3}>Volunteering & leadership</h3>
-                <h2 className={Style.header2}>{props.volunteeringInfo.organization}</h2>
-                <p>
-                    {props.volunteeringInfo.involvement} • 
-                    {props.volunteeringInfo.startDate} - 
-                    {props.volunteeringInfo.endDate}
-                </p>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
+                {props.volunteeringInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.organization}</h2>
+                    <p>
+                        {info.involvement} • 
+                        {info.startDate} - 
+                        {info.endDate}
+                    </p>
+                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
+                    Doloremque!</p>
+                </div>
+                ))}
             </div>}
 
-            {props.skillsInfo && 
+            {props.skillsInfo.length > 0 && 
             <div>
                 <h3 className={Style.header3}>SKILLS</h3>
-                <p>{props.skillsInfo}</p>
+                {props.skillsInfo.map((info,index)=><p key={index}>{info.skill}</p>)}
             </div>}
 
-            {props.certificationsInfo.certification &&
+            {props.certificationsInfo.length > 0 &&
             <div>
                 <h3 className={Style.header3}>CERTIFICATIONS</h3>
-                <h2 className={Style.header2}>{props.certificationsInfo.certification}</h2>
-                <p>
-                    {props.certificationsInfo.provider} • 
-                    {props.certificationsInfo.startDay} - 
-                    {props.certificationsInfo.endDate}
-                </p>
+                {props.certificationsInfo.map((info,index)=>(
+                <div key={index}>
+                    <h2 className={Style.header2}>{info.certification}</h2>
+                    <p>
+                        {info.provider} • 
+                        {info.startDay} - 
+                        {info.endDate}
+                    </p>
+                </div>
+                ))}
             </div>}
 
             {props.projectsInfo.length > 0 && 

@@ -38,9 +38,9 @@ function ResumeBuilder()
     const [hide,setHide] =useState(false);
     const [languagesInfo,setLanguagesInfo] = useState([]);
     const [personalInfo,setPersonalInfo] = useState({});
-    const [skillsInfo,setSkillsInfo] = useState("");
-    const [certificationsInfo,setCertificationsInfo] = useState({});
-    const [volunteeringInfo,setVolunteeringInfo] = useState({});
+    const [skillsInfo,setSkillsInfo] = useState([]);
+    const [certificationsInfo,setCertificationsInfo] = useState([]);
+    const [volunteeringInfo,setVolunteeringInfo] = useState([]);
     const [coursesInfo,setCoursesInfo] = useState([]);
     const [projectsInfo,setProjectsInfo] = useState([]);
     const [workInfo,setWorkInfo] = useState([]);
@@ -59,23 +59,30 @@ function ResumeBuilder()
         setPersonalInfo({...PersonalInfoSection});
     }
 
-    function addSkills(skillsSection) {
-        setSkillsInfo(skillsSection);
-    }
-
-    function addCertifications(certificationsSection) {
-        setCertificationsInfo(prevValue => {
-            return {
-                ...certificationsSection,
-            }
+    function addSkills(Section) {
+        setSkillsInfo(prevValue => {
+            return [
+                ...prevValue,
+                Section,
+            ]
         });
     }
 
-    function addVolunteering(volunteeringSection) {
+    function addCertifications(Section) {
+        setCertificationsInfo(prevValue => {
+            return [
+                ...prevValue,
+                Section,
+            ]
+        });
+    }
+
+    function addVolunteering(Section) {
         setVolunteeringInfo(prevValue => {
-            return {
-                ...volunteeringSection,
-            }
+            return [
+                ...prevValue,
+                Section,
+            ]
         });
     }
 
@@ -155,6 +162,30 @@ function ResumeBuilder()
            });
     }
 
+    function deleteSkill(id) {
+        setSkillsInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteCertification(id) {
+        setSkillsInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteVolunteering(id) {
+        setVolunteeringInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
     function chooseTemplate(id) {
         setTemplate(id);
         setHide(hide === true ? false : true);
@@ -173,15 +204,15 @@ function ResumeBuilder()
          
                     <Languages addLanguages={addLanguages} deleteLanguage={deleteLanguage} />
 
-                    <Certifactes addCertifications={addCertifications} />
+                    <Certifactes addCertifications={addCertifications} deleteCertification={deleteCertification} />
 
                     <Courses addCourses={addCourses} deleteCourse={deleteCourse} />
 
                     <Projects addProjects={addProjects} deleteProject={deleteProject} />
 
-                    <Volunteering addVolunteering={addVolunteering}/>
+                    <Volunteering addVolunteering={addVolunteering} deleteVolunteering={deleteVolunteering} />
 
-                    <Skills addSkills={addSkills}/>
+                    <Skills addSkills={addSkills} deleteSkill={deleteSkill} />
                     </>}
 
                     {hide && <div className={styles.templateMenu}>

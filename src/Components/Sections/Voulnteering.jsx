@@ -96,12 +96,12 @@ function Voulnteering(props){
         });
     }
 
-    function handleCheck(event, experience) {
+    function handleCheck(event, volunteering) {
         const checked = event.target.checked;
         if (checked) {
-            props.AddVolunteering(experience);
+            props.addVolunteering(volunteering);
         } else { 
-            props.deleteVolunteering(experience.id)};
+            props.deleteVolunteering(volunteering.id)};
     }
 
     return <div className={styles.sec}>    
@@ -165,7 +165,7 @@ function Voulnteering(props){
         <div>
             {volunteerings.map((volunteering) => (
                 <div key={volunteering.id} className={styles.prev}>
-                    <input type="checkbox" onChange={(event)=>handleCheck(event, experience)} />
+                    <input type="checkbox" onChange={(event)=>handleCheck(event, volunteering)} />
                     <div>
                         <h3>
                             {volunteering.organization} at {volunteering.involvement}

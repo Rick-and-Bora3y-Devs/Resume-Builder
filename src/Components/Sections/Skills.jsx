@@ -52,6 +52,7 @@ function Skills(props){
 
     const deleteSkill = (id) => {
         dispatch({ type: ActionTypes.DeleteSkill, payload: { id } });
+        props.deleteSkill(id)
     };
     
     const editSkill = (skill) => {
@@ -75,9 +76,10 @@ function Skills(props){
         setSkillSection(value);
     }
 
-    function SubmitChanges() {
-        props.addSkills(skillsSection);
-    }
+    function handleCheck(event, skill) {
+        const checked = event.target.checked;
+        checked ? props.addSkills(skill) : props.deleteSkill(skill.id);
+      }
 
     return <div className={styles.sec}>
         <h1 className={styles.Heading}>Skills</h1>
@@ -97,15 +99,15 @@ function Skills(props){
         <div>
             {skills.map((skill) => (
                 <div key={skill.id} className={styles.prev}>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={(event)=>handleCheck(event, skill)} />
                 <div>
                     <h3>
                         {skill.skill} 
                     </h3>
                 </div>
-                <div className={styles.controls}>
-                    <button onClick={() => editSkill(skill)}>Edit</button>
-                    <button onClick={() => deleteSkill(skill.id)}>Delete</button>
+                <div className={styles.formControls}>
+                    <button className={styles.editBtn} onClick={() => editSkill(skill)}>Edit</button>
+                    <button className={styles.deleteBtn} onClick={() => deleteSkill(skill.id)}>Delete</button>
                 </div>
                 </div>
             ))}
