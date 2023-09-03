@@ -1,19 +1,30 @@
 //Styles
+import { useState } from "react";
 import styles from "../../Css/resume.module.css";
 
 //Components
-import AddBtn from "../AddBtn.jsx";
-import TextEditor from "../TextEditor";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
-function Summary(){
+function Summary(props){
+    const [value, setValue] = useState('');
+
+    function submitChanges() {
+        props.addSummary(value);
+        console.log(value);
+    }
+
+    function handleCancel() {
+        setValue("");
+        props.deleteSummary();
+    }
     return(
             <div className={styles.sec}>
                 <h1 className={styles.Heading}>Professional Summaries</h1>
-                {/* <AddBtn text={"Add Professional Summary"}/> */}
-                <TextEditor />
+                <ReactQuill theme="snow" value={value} onChange={setValue} />
                 <br />
-                <SaveCancelBtn />
+                <SaveCancelBtn onClick={submitChanges} onCancel={handleCancel}/>
             </div>
     )
 }

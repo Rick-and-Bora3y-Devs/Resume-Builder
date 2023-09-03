@@ -6,9 +6,11 @@ import styles from "../../Css/resume.module.css";
 
 //Components
 import AddBtn from "../AddBtn.jsx";
-import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+// Quill
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const ActionTypes = {
     AddVolunteering: "ADD_Volunteering",
@@ -41,6 +43,7 @@ function Voulnteering(props){
         involvement: "",
         startDate: "",
         endDate: "",
+        description: "",
     });
 
 
@@ -104,6 +107,15 @@ function Voulnteering(props){
             props.deleteVolunteering(volunteering.id)};
     }
 
+    function handleDescription(value) {
+        setVolunteeringSection((prev) => {
+          return {
+            ...prev,
+            description: value,
+          }
+        })
+    }
+
     return <div className={styles.sec}>    
         {/* Volunttering Header */}
         <h1 className={styles.Heading}>Volunteering</h1>
@@ -156,8 +168,10 @@ function Voulnteering(props){
                 />
             </div>
         </div>
-        <TextEditor />
-        <br/>
+        <div>
+          <label className={styles.descriptionLabel}>Description</label>
+          <ReactQuill theme="snow" value={volunteeringSection.description} onChange={handleDescription} />
+        </div>
         <SaveCancelBtn onClick={saveVolunteering} onCancel={handleCancel}/> </>}
 
         {/* Volunteerings */}

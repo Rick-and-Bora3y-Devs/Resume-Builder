@@ -34,7 +34,6 @@ function Education(props){
     
     const [isFormVisible, setFormVisible] = useState(false);
     const [educations, dispatch] = useReducer(educationReducer, []);
-    const [allEducation, setAllEducation] = useState([]);
     const [educationSection, setEduactionSection] = useState({
         institute: "",
         degree: "",

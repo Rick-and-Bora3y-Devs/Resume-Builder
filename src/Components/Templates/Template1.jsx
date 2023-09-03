@@ -21,12 +21,7 @@ function Template1(props) {
             </div>
             }
            
-           {props.summary &&
-            <p className={Style.professionalSummaries}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-            Doloremque!
-            </p>}
+           {props.summary && <p dangerouslySetInnerHTML={{__html: props.summary}} />}
            
            {props.workInfo.length > 0 &&
             <div className={Style.workExperience}>
@@ -38,9 +33,7 @@ function Template1(props) {
                     {info.Start} - 
                     {info.End}
                     </div>
-                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                    Doloremque!</p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                     <p>{info.Position}</p>
                 </div>
                 ))}
@@ -71,9 +64,7 @@ function Template1(props) {
                         {info.startDate} - 
                         {info.endDate}
                     </p>
-                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                    Doloremque!</p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}
@@ -110,11 +101,7 @@ function Template1(props) {
                         {info.startDate} - 
                         {info.endDate}
                     </p>
-                    <p className={Style.description}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                        Doloremque!
-                    </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}
@@ -130,6 +117,7 @@ function Template1(props) {
                         {info.startDate} - 
                         {info.endDate}
                     </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}

@@ -6,10 +6,11 @@ import styles from "../../Css/resume.module.css";
 
 //Components
 import AddBtn from "../AddBtn.jsx";
-import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
-
+// Quill
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const ActionTypes = {
     AddProject: "ADD_Project",
@@ -101,7 +102,16 @@ function Projects(props){
     function handleCheck(event, project) {
         const checked = event.target.checked;
         checked ? props.addProjects(project) : props.deleteProject(project.id);
-      }
+    }
+
+    function handleDescription(value) {
+        setProjectsSection((prev) => {
+          return {
+            ...prev,
+            description: value,
+          }
+        })
+    }
 
     return  <div className={styles.sec}>
 
@@ -156,8 +166,10 @@ function Projects(props){
                     </div>
 
                 </div>
-                <TextEditor />
-                <br/>
+                <div>
+                    <label className={styles.descriptionLabel}>Description</label>
+                    <ReactQuill theme="snow" value={projectsSection.description} onChange={handleDescription} />
+                </div>
                 <SaveCancelBtn onClick={saveProject} onCancel={handleCancel} />
                 </>)}
 
