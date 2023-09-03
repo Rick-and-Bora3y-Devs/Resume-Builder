@@ -1,6 +1,5 @@
 import React from "react";
 import Style from "./Template1.module.css";
-import Languages from "../Sections/Languages";
 
 function Template1(props) {
     return (
@@ -29,29 +28,36 @@ function Template1(props) {
             Doloremque!
             </p>}
            
-           {props.workInfo.position &&
+           {props.workInfo.length > 0 &&
             <div className={Style.workExperience}>
                 <h3 className={Style.header3}>WORK EXPERIENCE</h3>
-                <div>
-                <h2 className={Style.header2}>{props.workInfo.degree}</h2> • 
-                {props.workInfo.startDate} - 
-                {props.workInfo.endDate}
+                {props.workInfo.map((info,index)=>(
+                    <div key={index}>
+                    <div>
+                    <h2 className={Style.header2}>{info.Company}</h2> • 
+                    {info.Start} - 
+                    {info.End}
+                    </div>
+                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
+                    Doloremque!</p>
+                    <p>{info.Position}</p>
                 </div>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
-                <p>{props.workInfo.position}</p>
+                ))}
             </div>}
 
-            {props.educationInfo.institute && 
+        {props.educationInfo.length > 0 &&        
             <div>
                 <h3 className={Style.header3}>EDUCATION</h3>
-                <h2 className={Style.header2}>{props.educationInfo.institute}</h2>
-                <p>
-                    {props.educationInfo.degree} • 
-                    {props.educationInfo.startDate} - 
-                    {props.educationInfo.endDate}
-                </p>
+                {props.educationInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.institute}</h2>
+                    <p>
+                        {info.degree} • 
+                        {info.startDate} - 
+                        {info.endDate}
+                    </p>
+                </div>))}
             </div>}
 
             {props.volunteeringInfo.organization &&
@@ -85,44 +91,47 @@ function Template1(props) {
                 </p>
             </div>}
 
-            {props.projectsInfo.project && 
+            {props.projectsInfo.length > 0 && 
             <div>
                 <h3 className={Style.header3}>PROJECTS</h3>
-                <h2 className={Style.header2}>{props.projectsInfo.project}</h2>
-                <p>
-                    {props.projectsInfo.organization} • 
-                    {props.projectsInfo.startDate} - 
-                    {props.projectsInfo.endDate}
-                </p>
-                <p className={Style.description}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                    Doloremque!
-                </p>
+                {props.projectsInfo.map((info,index)=>(
+                <div key={index}>
+                    <h2 className={Style.header2}>{info.project}</h2>
+                    <p>
+                        {info.organization} • 
+                        {info.startDate} - 
+                        {info.endDate}
+                    </p>
+                    <p className={Style.description}>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
+                        Doloremque!
+                    </p>
+                </div>
+                ))}
             </div>}
 
-            {props.coursesInfo.courses &&
+            {props.coursesInfo.length > 0 &&
             <div>
                 <h3 className={Style.header3}>COURSES</h3>
-                <h2 className={Style.header2}>{props.coursesInfo.courses}</h2>
-                <p>
-                    {props.coursesInfo.provider} • 
-                    {props.coursesInfo.startDate} - 
-                    {props.coursesInfo.endDate}
-                </p>
+                {props.coursesInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.course}</h2>
+                    <p>
+                        {info.provider} • 
+                        {info.startDate} - 
+                        {info.endDate}
+                    </p>
+                </div>
+                ))}
             </div>}
         
-            {/* {props.languageInfo.map((info,index) => (
-                <div key={index}>
-                <h3 className={Style.header3}>LANGUAGES</h3>
-                <p>{info.language} • {info.proficiency}</p>
-            </div>))
-            } */}
-
+            {props.languageInfo.length > 0 &&
              <div>
                 <h3 className={Style.header3}>LANGUAGES</h3>
                     {props.languageInfo.map((info,index)=><p key={index}>{info.language} • {info.proficiency}</p>)}
-            </div>
+            </div>}
+
         </div>
     );
 }

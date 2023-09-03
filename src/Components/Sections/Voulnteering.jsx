@@ -66,6 +66,7 @@ function Voulnteering(props){
 
     const deleteVolunteering = (id) => {
         dispatch({ type: ActionTypes.DeleteVolunteering, payload: { id } });
+        props.deleteVolunteering(id);
     };
     
     const editVolunteering = (volunteering) => {
@@ -95,8 +96,12 @@ function Voulnteering(props){
         });
     }
 
-    function SubmitChanges() {
-        props.addVolunteering(volunteeringSection);
+    function handleCheck(event, experience) {
+        const checked = event.target.checked;
+        if (checked) {
+            props.AddVolunteering(experience);
+        } else { 
+            props.deleteVolunteering(experience.id)};
     }
 
     return <div className={styles.sec}>    
@@ -160,7 +165,7 @@ function Voulnteering(props){
         <div>
             {volunteerings.map((volunteering) => (
                 <div key={volunteering.id} className={styles.prev}>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={(event)=>handleCheck(event, experience)} />
                     <div>
                         <h3>
                             {volunteering.organization} at {volunteering.involvement}
@@ -169,9 +174,9 @@ function Voulnteering(props){
                             {volunteering.startDate} - {volunteering.endDate}
                         </h3>
                     </div>
-                    <div className={styles.controls}>
-                        <button onClick={() => editVolunteering(volunteering)}>Edit</button>
-                        <button onClick={() => deleteVolunteering(volunteering.id)}>Delete</button>
+                    <div className={styles.formControls}>
+                        <button className={styles.editBtn} onClick={() => editVolunteering(volunteering)}>Edit</button>
+                        <button className={styles.deleteBtn} onClick={() => deleteVolunteering(volunteering.id)}>Delete</button>
                     </div>
                 </div>
             ))}

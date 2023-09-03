@@ -67,12 +67,12 @@ function Courses(props) {
 
     const deleteCourse = (id) => {
         dispatch({ type: ActionTypes.DeleteCourse, payload: { id } });
+        props.deleteCourse(id);
     };
     
     const editCourse = (course) => {
         setCoursesSection({ ...course });
         showForm();
-        deleteCourse(course.id);
     };
     
     const saveCourse = () => {
@@ -96,8 +96,12 @@ function Courses(props) {
         });
     }
 
-    function SubmitChanges() {
-        props.addCourses(coursesSection);
+    function handleCheck(event, course) {
+        const checked = event.target.checked;
+        if (checked) {
+            props.addCourses(course);
+        } else { 
+            props.deleteCourse(course.id)};
     }
 
     return (
@@ -161,7 +165,7 @@ function Courses(props) {
         <div>
             {courses.map((course) => (
                 <div key={course.id} className={styles.prev}>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={(event)=>handleCheck(event, course)}/>
                 <div>
                     <h3>
                         {course.course} at {course.provider}
@@ -170,9 +174,9 @@ function Courses(props) {
                         {course.startDate} - {course.endDate}
                     </h3>
                 </div>
-                <div className={styles.controls}>
-                    <button onClick={() => editCourse(course)}>Edit</button>
-                    <button onClick={() => deleteCourse(course.id)}>Delete</button>
+                <div className={styles.formControls}>
+                    <button className={styles.editBtn} onClick={() => editCourse(course)}>Edit</button>
+                    <button className={styles.deleteBtn} onClick={() => deleteCourse(course.id)}>Delete</button>
                 </div>
                 </div>
             ))}

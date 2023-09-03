@@ -67,6 +67,7 @@ function Projects(props){
 
     const deleteProject = (id) => {
         dispatch({ type: ActionTypes.DeleteProject, payload: { id } });
+        props.deleteProject(id);
     };
     
     const editProject = (project) => {
@@ -97,9 +98,10 @@ function Projects(props){
         });
     }
 
-    function SubmitChanges() {
-        props.addProjects(projectsSection);
-    }
+    function handleCheck(event, project) {
+        const checked = event.target.checked;
+        checked ? props.addProjects(project) : props.deleteProject(project.id);
+      }
 
     return  <div className={styles.sec}>
 
@@ -164,7 +166,7 @@ function Projects(props){
                 <div>
                 {projects.map((project) => (
                     <div key={project.id} className={styles.prev}>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={(event)=>handleCheck(event, project)} />
                     <div>
                         <h3>
                             {project.project} at {project.organization}
@@ -173,9 +175,9 @@ function Projects(props){
                             {project.startDate} - {project.endDate}
                         </h3>
                     </div>
-                    <div className={styles.controls}>
-                        <button onClick={() => editProject(project)}>Edit</button>
-                        <button onClick={() => deleteProject(project.id)}>Delete</button>
+                    <div className={styles.formControls}>
+                        <button className={styles.editBtn} onClick={() => editProject(project)}>Edit</button>
+                        <button className={styles.deleteBtn} onClick={() => deleteProject(project.id)}>Delete</button>
                     </div>
                     </div>
                 ))}

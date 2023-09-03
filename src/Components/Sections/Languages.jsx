@@ -68,12 +68,14 @@ function Languages(props){
 
     const deleteLanguage = (id) => {
         dispatch({ type: ActionTypes.DeleteLanguage, payload: { id } });
+        props.deleteLanguage(id);
     };
     
     const editLanguage = (language) => {
         setLanguagesSection({ ...language });
         showForm();
         deleteLanguage(language.id);
+       
     };
     
     const saveLanguage = () => {
@@ -96,32 +98,14 @@ function Languages(props){
         });
     }
 
-    function handleCheck(event, language, id) {
-        console.log(language);
+    function handleCheck(event ,language) {
         const checked = event.target.checked;
-        checked ? add(language) : removeLanguage(id);
-        SubmitChanges();
+        if (checked) {
+            props.addLanguages(language);
+        } else { 
+            props.deleteLanguage(language.id)};
     }
-
-    function add(language) {
-        setAllLanguages(prevValue => [...prevValue, language]);
-        console.log("adding language");
-        console.log(allLanguages);
-        
-    }
-
-    function removeLanguage (id) {
-       setAllLanguages(prevLanguages => {
-        return prevLanguages.filter((language, index) => {
-            return language.id !== id;
-        })
-       });
-    }
-
-    function SubmitChanges() {
-        console.log(allLanguages);
-        props.addLanguages(allLanguages);
-    }
+    
 
       return <div className={styles.sec}>
 
@@ -151,7 +135,7 @@ function Languages(props){
         <div>
             {languages.map((language) => (
                 <div key={language.id} className={styles.prev}>
-                    <input className={styles.checkbox} type="checkbox" onChange={(event) => handleCheck(event, language, language.id)} />
+                    <input className={styles.checkbox} type="checkbox" onChange={(event) => handleCheck(event, language)} />
                     <div>
                         <h3>
                             {language.language} at {language.proficiency}
@@ -160,7 +144,7 @@ function Languages(props){
                     <div className={styles.formControls}>
                         <button className={styles.editBtn} onClick={() => editLanguage(language)}>Edit</button>
                         <button className={styles.deleteBtn} onClick={() => deleteLanguage(language.id)}>Delete</button>
-                </div>
+                    </div>
                 </div>
             ))}
         </div>

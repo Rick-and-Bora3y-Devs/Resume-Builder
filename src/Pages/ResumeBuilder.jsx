@@ -41,23 +41,22 @@ function ResumeBuilder()
     const [skillsInfo,setSkillsInfo] = useState("");
     const [certificationsInfo,setCertificationsInfo] = useState({});
     const [volunteeringInfo,setVolunteeringInfo] = useState({});
-    const [coursesInfo,setCoursesInfo] = useState({});
-    const [projectsInfo,setProjectsInfo] = useState({});
-    const [workInfo,setWorkInfo] = useState({});
-    const [educationInfo,setEducationInfo] = useState({});
+    const [coursesInfo,setCoursesInfo] = useState([]);
+    const [projectsInfo,setProjectsInfo] = useState([]);
+    const [workInfo,setWorkInfo] = useState([]);
+    const [educationInfo,setEducationInfo] = useState([]);
 
-    function addLanguages(allLanguages) {
-        console.log(allLanguages);
-        setLanguagesInfo([...allLanguages]);
+    function addLanguages(Section) {
+        setLanguagesInfo(prevValue => {
+            return [
+                ...prevValue,
+                Section,
+            ]
+        });
     }
 
     function addPersonalInfo(PersonalInfoSection) {
-        setPersonalInfo(prevValue => {
-            return {
-                // ...prevValue,
-                ...PersonalInfoSection,
-            }
-        });
+        setPersonalInfo({...PersonalInfoSection});
     }
 
     function addSkills(skillsSection) {
@@ -80,37 +79,80 @@ function ResumeBuilder()
         });
     }
 
-    function addCourses(coursesSection) {
+    function addCourses(Section) {
         setCoursesInfo(prevValue => {
-            return {
-                ...coursesSection,
-            }
+            return [
+                ...prevValue,
+                Section,
+            ]
         });
     }
-
-    function addProjects(projectsSection) {
+    
+    function addProjects(Section) {
         setProjectsInfo(prevValue => {
-            return {
-                ...projectsSection,
-            }
+            return [
+                ...prevValue,
+                Section,
+            ]
         });
     }
 
-    function addWork(workSection) {
+    function addWork(Section) {
         setWorkInfo(prevValue => {
-            return {
-                ...workSection,
-            }
+            return [
+                ...prevValue,
+                Section,
+            ]
         });
     }
 
     function addEducation(educationSection) {
         setEducationInfo(prevValue => {
-            return {
+            return [
                 ...prevValue,
-                ...educationSection,
-            }
+                educationSection,
+            ]
         });
+    }
+
+    function deleteEducation(id) {
+        setEducationInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteLanguage(id) {
+        setLanguagesInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteCourse(id) {
+        setCoursesInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteWork(id) {
+        setWorkInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
+    }
+
+    function deleteProject(id) {
+        setProjectsInfo(prev => {
+            return prev.filter(item => {
+                return item.id !== id;
+            })
+           });
     }
 
     function chooseTemplate(id) {
@@ -125,18 +167,17 @@ function ResumeBuilder()
 
                     <Summary/>
 
-                    <Experience addWork={addWork} />
+                    <Experience addWork={addWork} deleteWork={deleteWork} />
 
-                    <Education addEducation={addEducation}/>
+                    <Education addEducation={addEducation} deleteEducation={deleteEducation} />
          
+                    <Languages addLanguages={addLanguages} deleteLanguage={deleteLanguage} />
 
-                    <Languages addLanguages={addLanguages}/>
+                    <Certifactes addCertifications={addCertifications} />
 
-                    <Certifactes addCertifications={addCertifications}/>
+                    <Courses addCourses={addCourses} deleteCourse={deleteCourse} />
 
-                    <Courses addCourses={addCourses}/>
-
-                    <Projects addProjects={addProjects}/>
+                    <Projects addProjects={addProjects} deleteProject={deleteProject} />
 
                     <Volunteering addVolunteering={addVolunteering}/>
 

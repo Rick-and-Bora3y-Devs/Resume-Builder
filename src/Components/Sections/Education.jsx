@@ -34,6 +34,7 @@ function Education(props){
     
     const [isFormVisible, setFormVisible] = useState(false);
     const [educations, dispatch] = useReducer(educationReducer, []);
+    const [allEducation, setAllEducation] = useState([]);
     const [educationSection, setEduactionSection] = useState({
         institute: "",
         degree: "",
@@ -66,6 +67,7 @@ function Education(props){
 
     const deleteEducation = (id) => {
         dispatch({ type: ActionTypes.DeleteEducation, payload: { id } });
+        props.deleteEducation(id);
     };
     
     const editEducation = (education) => {
@@ -78,7 +80,7 @@ function Education(props){
         const id = educationIdCounter;
         educationIdCounter++;
         const newEducation = { id, ...educationSection };
-        SubmitChanges ();
+        
         dispatch({ type: ActionTypes.AddEducation, payload: newEducation });
         handleCancel();
     };
@@ -94,18 +96,15 @@ function Education(props){
         });
     }
 
-    //Submitting Education
 
-    function SubmitChanges() {
-        props.addEducation(educationSection);
-    }
-
-    // function handleCheck(education) {
-    //     // const checked = event.target.checked;
-    //     // if(checked)
-    //     setEduactionSection({...education})
-    //     SubmitChanges();
-    // }
+   function handleCheck(event ,education) {
+    const checked = event.target.checked;
+    if (checked) {
+        setAllEducation(prevValue => [...prevValue, education]);
+        props.addEducation(education);
+    } else { 
+        props.deleteEducation(education.id)};
+   }
 
 
     return (
@@ -180,7 +179,7 @@ function Education(props){
             <div>
                 {educations.map((education,index) => (
                     <div key={education.id} className={styles.prev}>
-                    <input key={index} type="checkbox" onChange={()=>{handleCheck(education.id)}}/>
+                    <input key={index} type="checkbox" onChange={(event)=>handleCheck(event ,education)}/>
                     <div>
                         <h3>
                         {education.degree} at {education.institute}
@@ -190,9 +189,9 @@ function Education(props){
                         {education.startDate} - {education.endDate}
                         </h3>
                     </div>
-                    <div className={styles.controls}>
-                        <button onClick={() => editEducation(education)}>Edit</button>
-                        <button onClick={() => deleteEducation(education.id)}>Delete</button>
+                    <div className={styles.formControls}>
+                        <button className={styles.editBtn} onClick={() => editEducation(education)}>Edit</button>
+                        <button className={styles.deleteBtn} onClick={() => deleteEducation(education.id)}>Delete</button>
                     </div>
                     </div>
                 ))}

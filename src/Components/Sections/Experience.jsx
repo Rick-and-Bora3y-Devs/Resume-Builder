@@ -57,6 +57,7 @@ function Experience(props) {
 
     const deleteExperience = (id) => {
         dispatch({ type: ActionTypes.DeleteExperience, payload: { id } });
+        props.deleteWork(id);
     };
 
     const editExperience = (experience) => {
@@ -81,6 +82,11 @@ function Experience(props) {
         [name]: value,
         }));
     };
+
+    function handleCheck(event, experience) {
+      const checked = event.target.checked;
+      checked ? props.addWork(experience) : props.deleteWork(experience.id);
+    }
 
 
   return (<div className={styles.sec}>
@@ -156,7 +162,7 @@ function Experience(props) {
     <div>
       {experiences.map((experience) => (
         <div key={experience.id} className={styles.prev}>
-          <input type="checkbox" />
+          <input type="checkbox" onChange={(event)=>handleCheck(event, experience)}/>
           <div>
             <h3>
               {experience.Position} at {experience.Company}
@@ -166,9 +172,9 @@ function Experience(props) {
               {experience.Start} - {experience.End}
             </h3>
           </div>
-          <div className={styles.controls}>
-            <button onClick={() => editExperience(experience)}>Edit</button>
-            <button onClick={() => deleteExperience(experience.id)}>Delete</button>
+          <div className={styles.formControls}>
+            <button className={styles.editBtn} onClick={() => editExperience(experience)}>Edit</button>
+            <button className={styles.deleteBtn} onClick={() => deleteExperience(experience.id)}>Delete</button>
           </div>
         </div>
       ))}
