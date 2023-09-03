@@ -96,18 +96,6 @@ function Languages(props){
     }
 
 
-
-    function handleChange(event) {
-        const {name, value} = event.target;
-
-        setLanguagesSection(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            }
-        });
-    }
-
     function SubmitChanges() {
         props.addLanguages(languagesSection);
     }
