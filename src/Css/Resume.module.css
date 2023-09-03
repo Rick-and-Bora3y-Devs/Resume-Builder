@@ -176,3 +176,38 @@ html{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.514);
     transform: scale(1.1);
 }
+
+/* Features */
+
+.formControls {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+.editBtn {
+    border: none;
+    font-family: "Poppins" , serif;
+    background-color: #1A5062;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 10px;
+    
+}
+
+.deleteBtn {
+    border: 1px solid #1A5062;
+    font-family: "Poppins" , serif;
+    padding: 5px 25px;
+    border-radius: 10px;
+
+}
+
+/* input[type="checkbox"].checkbox:checked {
+    border-color: red;
+  background-color:red;
+} */
+
+
+  
+

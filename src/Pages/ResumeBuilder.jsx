@@ -26,12 +26,17 @@ import Education from "../Components/Sections/Education.jsx";
 
 import { Link, useLocation } from "react-router-dom";
 
+import template1 from "../Assets/template1.png"
+import template2 from "../Assets/template2.png"
+import template3 from "../Assets/template3.png"
+
 function ResumeBuilder()
 {
 
     const location = useLocation();
     const [template, setTemplate] = useState(location.state.id);
-    const [languagesInfo,setLanguagesInfo] = useState({});
+    const [hide,setHide] =useState(false);
+    const [languagesInfo,setLanguagesInfo] = useState([]);
     const [personalInfo,setPersonalInfo] = useState({});
     const [skillsInfo,setSkillsInfo] = useState("");
     const [certificationsInfo,setCertificationsInfo] = useState({});
@@ -41,12 +46,9 @@ function ResumeBuilder()
     const [workInfo,setWorkInfo] = useState({});
     const [educationInfo,setEducationInfo] = useState({});
 
-    function addLanguages(languageSection) {
-        setLanguagesInfo(prevValue => {
-            return {
-                ...languageSection
-            }
-        });
+    function addLanguages(allLanguages) {
+        console.log(allLanguages);
+        setLanguagesInfo([...allLanguages]);
     }
 
     function addPersonalInfo(PersonalInfoSection) {
@@ -105,6 +107,7 @@ function ResumeBuilder()
     function addEducation(educationSection) {
         setEducationInfo(prevValue => {
             return {
+                ...prevValue,
                 ...educationSection,
             }
         });
@@ -162,8 +165,7 @@ function ResumeBuilder()
                         {
                             template === 1 ?
                             <Template1
-                            language={languagesInfo.language}
-                            proficiency={languagesInfo.proficiency}
+                            languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
                             certificationsInfo={certificationsInfo}

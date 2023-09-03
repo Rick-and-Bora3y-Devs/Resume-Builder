@@ -74,7 +74,7 @@ function Certifactes(props){
                     <div>
                         <label>End Date</label>
                         <input
-                        type="date"
+                        type="text"
                         onChange={handleChange}
                         value={certificationsSection.endDate}
                         name="endDate"

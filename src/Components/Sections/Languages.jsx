@@ -2,7 +2,7 @@
 import { useState , useReducer } from "react";
 
 //Styles
-import styles from "../../Css/resume.module.css";
+import styles from "../../Css/Resume.module.css";
 
 //Components
 import AddBtn from "../AddBtn.jsx";
@@ -41,6 +41,7 @@ function Languages(props){
 
     const [isFormVisible, setFormVisible] = useState(false);
     const [languages, dispatch] = useReducer(educationReducer, []);
+    const [allLanguages, setAllLanguages] = useState([]);
     const [languagesSection, setLanguagesSection] = useState({
         language: " ",
         proficiency: " "
@@ -87,19 +88,6 @@ function Languages(props){
     function handleChange(event) {
         const {name, value} = event.target;
 
-        setEduactionSection(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            }
-        });
-    }
-
-
-
-    function handleChange(event) {
-        const {name, value} = event.target;
-
         setLanguagesSection(prevValue => {
             return {
                 ...prevValue,
@@ -108,8 +96,31 @@ function Languages(props){
         });
     }
 
+    function handleCheck(event, language, id) {
+        console.log(language);
+        const checked = event.target.checked;
+        checked ? add(language) : removeLanguage(id);
+        SubmitChanges();
+    }
+
+    function add(language) {
+        setAllLanguages(prevValue => [...prevValue, language]);
+        console.log("adding language");
+        console.log(allLanguages);
+        
+    }
+
+    function removeLanguage (id) {
+       setAllLanguages(prevLanguages => {
+        return prevLanguages.filter((language, index) => {
+            return language.id !== id;
+        })
+       });
+    }
+
     function SubmitChanges() {
-        props.addLanguages(languagesSection);
+        console.log(allLanguages);
+        props.addLanguages(allLanguages);
     }
 
       return <div className={styles.sec}>
@@ -140,15 +151,15 @@ function Languages(props){
         <div>
             {languages.map((language) => (
                 <div key={language.id} className={styles.prev}>
-                <input type="checkbox" />
-                <div>
-                    <h3>
-                        {language.language} at {language.proficiency}
-                    </h3>
-                </div>
-                <div className={styles.controls}>
-                    <button onClick={() => editLanguage(language)}>Edit</button>
-                    <button onClick={() => deleteLanguage(language.id)}>Delete</button>
+                    <input className={styles.checkbox} type="checkbox" onChange={(event) => handleCheck(event, language, language.id)} />
+                    <div>
+                        <h3>
+                            {language.language} at {language.proficiency}
+                        </h3>
+                    </div>
+                    <div className={styles.formControls}>
+                        <button className={styles.editBtn} onClick={() => editLanguage(language)}>Edit</button>
+                        <button className={styles.deleteBtn} onClick={() => deleteLanguage(language.id)}>Delete</button>
                 </div>
                 </div>
             ))}

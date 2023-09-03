@@ -27,7 +27,7 @@ const educationReducer = (state, action) => {
 
 let educationIdCounter = 0;
 
-function Education(){
+function Education(props){
 
 
     //States
@@ -78,7 +78,7 @@ function Education(){
         const id = educationIdCounter;
         educationIdCounter++;
         const newEducation = { id, ...educationSection };
-
+        SubmitChanges ();
         dispatch({ type: ActionTypes.AddEducation, payload: newEducation });
         handleCancel();
     };
@@ -99,6 +99,13 @@ function Education(){
     function SubmitChanges() {
         props.addEducation(educationSection);
     }
+
+    // function handleCheck(education) {
+    //     // const checked = event.target.checked;
+    //     // if(checked)
+    //     setEduactionSection({...education})
+    //     SubmitChanges();
+    // }
 
 
     return (
@@ -171,9 +178,9 @@ function Education(){
 
             {/* Educations */}
             <div>
-                {educations.map((education) => (
+                {educations.map((education,index) => (
                     <div key={education.id} className={styles.prev}>
-                    <input type="checkbox" />
+                    <input key={index} type="checkbox" onChange={()=>{handleCheck(education.id)}}/>
                     <div>
                         <h3>
                         {education.degree} at {education.institute}

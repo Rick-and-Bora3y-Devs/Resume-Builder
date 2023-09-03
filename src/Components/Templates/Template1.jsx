@@ -1,14 +1,14 @@
 import React from "react";
 import Style from "./Template1.module.css";
+import Languages from "../Sections/Languages";
 
 function Template1(props) {
     return (
         <div className={Style.container}>
         
 
-            {props.personalInfo &&
-
-            <div className={Style.personalInfo}>
+            {props.personalInfo.firstName && 
+                <div className={Style.personalInfo}>
                 <h1 className={Style.header1}>
                     {props.personalInfo.firstName + " "}
                     {props.personalInfo.secondName}
@@ -19,7 +19,8 @@ function Template1(props) {
                     {props.personalInfo.phoneNumber} • 
                     {props.personalInfo.email}
                 </p>
-            </div>}
+            </div>
+            }
            
            {props.summary &&
             <p className={Style.professionalSummaries}>
@@ -111,11 +112,17 @@ function Template1(props) {
                 </p>
             </div>}
         
-            {props.language &&
+            {/* {props.languageInfo.map((info,index) => (
+                <div key={index}>
+                <h3 className={Style.header3}>LANGUAGES</h3>
+                <p>{info.language} • {info.proficiency}</p>
+            </div>))
+            } */}
+
              <div>
                 <h3 className={Style.header3}>LANGUAGES</h3>
-                <p>{props.language} • {props.proficiency}</p>
-            </div>}
+                    {props.languageInfo.map((info,index)=><p key={index}>{info.language} • {info.proficiency}</p>)}
+            </div>
         </div>
     );
 }
