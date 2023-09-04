@@ -135,7 +135,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteLanguage(id) {
@@ -143,7 +143,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteCourse(id) {
@@ -151,7 +151,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteWork(id) {
@@ -159,7 +159,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteProject(id) {
@@ -167,7 +167,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteSkill(id) {
@@ -175,15 +175,15 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteCertification(id) {
-        setSkillsInfo(prev => {
+        setCertificationsInfo(prev => {
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteVolunteering(id) {
@@ -262,8 +262,8 @@ function ResumeBuilder()
                             /> : 
                             template === 2 ?
                             <Template2 
-                            language={languagesInfo.language}
-                            proficiency={languagesInfo.proficiency}
+                            summary={summary}
+                            languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
                             certificationsInfo={certificationsInfo}
@@ -274,8 +274,8 @@ function ResumeBuilder()
                             educationInfo={educationInfo}
                             /> :
                             <Template3 
-                            language={languagesInfo.language}
-                            proficiency={languagesInfo.proficiency}
+                            summary={summary}
+                            languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
                             certificationsInfo={certificationsInfo}

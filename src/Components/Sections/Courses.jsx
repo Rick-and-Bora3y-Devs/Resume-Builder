@@ -73,6 +73,7 @@ function Courses(props) {
     const editCourse = (course) => {
         setCoursesSection({ ...course });
         showForm();
+        deleteCourse(course.id);
     };
     
     const saveCourse = () => {
@@ -98,10 +99,7 @@ function Courses(props) {
 
     function handleCheck(event, course) {
         const checked = event.target.checked;
-        if (checked) {
-            props.addCourses(course);
-        } else { 
-            props.deleteCourse(course.id)};
+        checked ? props.addCourses(course) : props.deleteCourse(course.id);
     }
 
     function handleDescription(value) {
