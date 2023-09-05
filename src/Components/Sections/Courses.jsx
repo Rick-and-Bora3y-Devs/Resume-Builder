@@ -147,7 +147,7 @@ function Courses(props) {
             <div>
                 <label>Start Date</label>
                 <input 
-                type="month" 
+                type="text" 
                 value={coursesSection.startDate} 
                 name="startDate" 
                 onChange={handleChange} 
@@ -158,7 +158,7 @@ function Courses(props) {
             <div>
                 <label>End Date</label>
                 <input
-                type="month"
+                type="text"
                 value={coursesSection.endDate}
                 name="endDate"
                 onChange={handleChange}
