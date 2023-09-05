@@ -189,8 +189,8 @@ function Education(props){
                             </div>
                         </div>
                         <div className={styles.formControls}>
-                            <FontAwesomeIcon className={styles.edit} onClick={() => editEducation(education)} />
-                            <FontAwesomeIcon className={styles.delete} onClick={() => deleteEducation(education.id)}/>
+                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editEducation(education)} />
+                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteEducation(education.id)}/>
                         </div>
                     </div>
                  ))}

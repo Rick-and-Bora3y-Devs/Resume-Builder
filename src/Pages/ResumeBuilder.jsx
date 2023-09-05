@@ -81,10 +81,7 @@ function ResumeBuilder()
     }
 
     function addSummary(value) {
-        console.log(value);
-        console.log(summary);
         setSummary(value);
-        console.log(summary);
     }
 
     function addSkills(Section) {

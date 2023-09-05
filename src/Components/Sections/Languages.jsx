@@ -142,8 +142,8 @@ function Languages(props){
                         </div>
                     </div>
                     <div className={styles.formControls}>
-                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editCertificate(certificate)} /> 
-                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteCertificate(certificate.id)} />
+                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editLanguage(language)} /> 
+                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteLanguage(language.id)} />
                     </div>
                 </div>
             ))}
