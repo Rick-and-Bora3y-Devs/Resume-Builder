@@ -1,17 +1,16 @@
 //React Stuff
-
 import { useState , useReducer } from "react";
-
 
 //Styles
 import styles from "../../Css/resume.module.css";
 
 //Components
 import AddBtn from "../AddBtn.jsx";
-import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
-
+// Quill
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const ActionTypes = {
     AddCourse: "ADD_COURSE",
@@ -43,6 +42,7 @@ function Courses(props) {
         provider: "",
         startDate: "",
         endDate: "",
+        description: "",
     });
 
     //Form Handlers
@@ -73,6 +73,7 @@ function Courses(props) {
     const editCourse = (course) => {
         setCoursesSection({ ...course });
         showForm();
+        deleteCourse(course.id);
     };
     
     const saveCourse = () => {
@@ -98,10 +99,16 @@ function Courses(props) {
 
     function handleCheck(event, course) {
         const checked = event.target.checked;
-        if (checked) {
-            props.addCourses(course);
-        } else { 
-            props.deleteCourse(course.id)};
+        checked ? props.addCourses(course) : props.deleteCourse(course.id);
+    }
+
+    function handleDescription(value) {
+        setCoursesSection((prev) => {
+          return {
+            ...prev,
+            description: value,
+          }
+        })
     }
 
     return (
@@ -155,10 +162,12 @@ function Courses(props) {
                 />
             </div>
         </div>
-        <TextEditor />
-        <br/>
-        <SaveCancelBtn onClick={saveCourse} onCancel={handleCancel}/> </>}
+        <div>
+          <label className={styles.descriptionLabel}>Description</label>
+          <ReactQuill theme="snow" value={coursesSection.description} onChange={handleDescription} />
+        </div>
 
+        <SaveCancelBtn onClick={saveCourse} onCancel={handleCancel}/> </>}
 
         {/* Courses */}
 

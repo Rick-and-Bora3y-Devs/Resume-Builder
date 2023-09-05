@@ -4,6 +4,9 @@ import AddBtn from "../AddBtn.jsx";
 import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 const ActionTypes = {
   AddExperience: "ADD_EXPERIENC",
   EditExperience: "EDIT_EXPERIENCE",
@@ -35,6 +38,7 @@ function Experience(props) {
         Start: "",
         End: "",
         City: "",
+        description: "",
     });
 
 
@@ -51,6 +55,7 @@ function Experience(props) {
             Start: "",
             End: "",
             City: "",
+            description: "",
         });
         setFormVisible(false);
     };
@@ -88,6 +93,14 @@ function Experience(props) {
       checked ? props.addWork(experience) : props.deleteWork(experience.id);
     }
 
+    function handleDescription(value) {
+      setFormData((prev) => {
+        return {
+          ...prev,
+          description: value,
+        }
+      })
+    }
 
   return (<div className={styles.sec}>
       
@@ -116,8 +129,8 @@ function Experience(props) {
                     name="Company" 
                     value={formData.degree} 
                     onChange={handleChange} 
-                    placeholder="Degree" />
-
+                    placeholder="Degree"
+                    />
                 </div>
 
                 <div className={styles.dates}>
@@ -128,8 +141,8 @@ function Experience(props) {
                         name="Start" 
                         value={formData.startDate} 
                         onChange={handleChange} 
-                        placeholder="Start Date
-                        " />
+                        placeholder="Start Date"
+                        />
                     </div>
                     <div className={styles.end}>
                         <label>End Date</label>
@@ -139,7 +152,6 @@ function Experience(props) {
                         value={formData.endDate} 
                         onChange={handleChange} 
                         placeholder="End Date" 
-
                         />
                     </div>
                 </div>
@@ -148,13 +160,16 @@ function Experience(props) {
                     <input 
                     type="text" 
                     name="City" 
-                    value={formData.city} 
+                    value={formData.City} 
                     onChange={handleChange} 
-                    placeholder="City" />
+                    placeholder="City"
+                    />
                 </div>
         </div>
-        <TextEditor />
-        <br />
+        <div>
+          <label className={styles.descriptionLabel}>Description</label>
+          <ReactQuill theme="snow" value={formData.description} onChange={handleDescription} />
+        </div>
         <SaveCancelBtn onClick={saveExperience} onCancel={handleCancel} />
       </>
     )}

@@ -129,7 +129,7 @@ html{
     gap: 0.1rem;
 }
 
-.Inputs div label {
+.Inputs div label, .descriptionLabel {
     font-size: 0.8rem;
     opacity: 50%;
 }

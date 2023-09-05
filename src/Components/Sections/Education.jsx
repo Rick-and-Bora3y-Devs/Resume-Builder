@@ -34,7 +34,6 @@ function Education(props){
     
     const [isFormVisible, setFormVisible] = useState(false);
     const [educations, dispatch] = useReducer(educationReducer, []);
-    const [allEducation, setAllEducation] = useState([]);
     const [educationSection, setEduactionSection] = useState({
         institute: "",
         degree: "",
@@ -99,11 +98,7 @@ function Education(props){
 
    function handleCheck(event ,education) {
     const checked = event.target.checked;
-    if (checked) {
-        setAllEducation(prevValue => [...prevValue, education]);
-        props.addEducation(education);
-    } else { 
-        props.deleteEducation(education.id)};
+    checked ? props.addEducation(education) : props.deleteEducation(education.id);
    }
 
 

@@ -13,20 +13,15 @@ function Template1(props) {
                     {props.personalInfo.secondName}
                 </h1>
                 <p>
-                    {props.personalInfo.city}, 
-                    {props.personalInfo.country} • 
-                    {props.personalInfo.phoneNumber} • 
-                    {props.personalInfo.email}
+                    {props.personalInfo.city + ", "
+                    + props.personalInfo.country + " • " 
+                    + props.personalInfo.phoneNumber + " • " 
+                    + props.personalInfo.email}
                 </p>
             </div>
             }
            
-           {props.summary &&
-            <p className={Style.professionalSummaries}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-            Doloremque!
-            </p>}
+           {props.summary && <p dangerouslySetInnerHTML={{__html: props.summary}} />}
            
            {props.workInfo.length > 0 &&
             <div className={Style.workExperience}>
@@ -34,13 +29,9 @@ function Template1(props) {
                 {props.workInfo.map((info,index)=>(
                     <div key={index}>
                     <div>
-                    <h2 className={Style.header2}>{info.Company}</h2> • 
-                    {info.Start} - 
-                    {info.End}
+                        <h2 className={Style.header2}>{info.Company}</h2> • {info.Start + " - " + info.End}  
                     </div>
-                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                    Doloremque!</p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                     <p>{info.Position}</p>
                 </div>
                 ))}
@@ -53,9 +44,7 @@ function Template1(props) {
                     <div key={index}>
                     <h2 className={Style.header2}>{info.institute}</h2>
                     <p>
-                        {info.degree} • 
-                        {info.startDate} - 
-                        {info.endDate}
+                        {info.degree + " • " + info.startDate + " - " + info.endDate}
                     </p>
                 </div>))}
             </div>}
@@ -67,13 +56,9 @@ function Template1(props) {
                     <div key={index}>
                     <h2 className={Style.header2}>{info.organization}</h2>
                     <p>
-                        {info.involvement} • 
-                        {info.startDate} - 
-                        {info.endDate}
+                        {info.invlovement + " • " + info.startDate + " - " + info.endDate}
                     </p>
-                    <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                    Doloremque!</p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}
@@ -91,9 +76,7 @@ function Template1(props) {
                 <div key={index}>
                     <h2 className={Style.header2}>{info.certification}</h2>
                     <p>
-                        {info.provider} • 
-                        {info.startDay} - 
-                        {info.endDate}
+                        {info.provider + " • " + info.startDate + " - " + info.endDate}
                     </p>
                 </div>
                 ))}
@@ -106,15 +89,9 @@ function Template1(props) {
                 <div key={index}>
                     <h2 className={Style.header2}>{info.project}</h2>
                     <p>
-                        {info.organization} • 
-                        {info.startDate} - 
-                        {info.endDate}
+                        {info.organization + " • " + info.startDate + " - " + info.endDate}
                     </p>
-                    <p className={Style.description}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                        Doloremque!
-                    </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}
@@ -126,10 +103,9 @@ function Template1(props) {
                     <div key={index}>
                     <h2 className={Style.header2}>{info.course}</h2>
                     <p>
-                        {info.provider} • 
-                        {info.startDate} - 
-                        {info.endDate}
+                        {info.provider + " • " + info.startDate + " - " + info.endDate}
                     </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
                 </div>
                 ))}
             </div>}

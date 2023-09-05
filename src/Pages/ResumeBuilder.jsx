@@ -48,6 +48,7 @@ function ResumeBuilder()
     const location = useLocation();
     const [template, setTemplate] = useState(location.state?.id);
     const [showPopup,setShowPopUp] = useState(false);
+    const [summary, setSummary] = useState("");
     const [languagesInfo,setLanguagesInfo] = useState([]);
     const [personalInfo,setPersonalInfo] = useState({});
     const [skillsInfo,setSkillsInfo] = useState([]);
@@ -78,6 +79,13 @@ function ResumeBuilder()
 
     function addPersonalInfo(PersonalInfoSection) {
         setPersonalInfo({...PersonalInfoSection});
+    }
+
+    function addSummary(value) {
+        console.log(value);
+        console.log(summary);
+        setSummary(value);
+        console.log(summary);
     }
 
     function addSkills(Section) {
@@ -148,7 +156,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteLanguage(id) {
@@ -156,7 +164,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteCourse(id) {
@@ -164,7 +172,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteWork(id) {
@@ -172,7 +180,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteProject(id) {
@@ -180,7 +188,7 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteSkill(id) {
@@ -188,15 +196,15 @@ function ResumeBuilder()
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteCertification(id) {
-        setSkillsInfo(prev => {
+        setCertificationsInfo(prev => {
             return prev.filter(item => {
                 return item.id !== id;
             })
-           });
+        });
     }
 
     function deleteVolunteering(id) {
@@ -205,6 +213,10 @@ function ResumeBuilder()
                 return item.id !== id;
             })
            });
+    }
+
+    function deleteSummary() {
+        setSummary("");
     }
 
     function chooseTemplate(id) {
@@ -218,7 +230,7 @@ function ResumeBuilder()
         
                     <PersonalInfo addPersonalInfo={addPersonalInfo}/>      
 
-                    <Summary/>
+                    <Summary addSummary={addSummary} deleteSummary={deleteSummary} />
 
                     <Experience addWork={addWork} deleteWork={deleteWork} />
 
@@ -260,6 +272,7 @@ function ResumeBuilder()
                         {
                             template === 1 ?
                             <Template1
+                            summary={summary}
                             languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
@@ -272,8 +285,8 @@ function ResumeBuilder()
                             /> : 
                             template === 2 ?
                             <Template2 
-                            language={languagesInfo.language}
-                            proficiency={languagesInfo.proficiency}
+                            summary={summary}
+                            languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
                             certificationsInfo={certificationsInfo}
@@ -284,8 +297,8 @@ function ResumeBuilder()
                             educationInfo={educationInfo}
                             /> :
                             <Template3 
-                            language={languagesInfo.language}
-                            proficiency={languagesInfo.proficiency}
+                            summary={summary}
+                            languageInfo={languagesInfo}
                             personalInfo={personalInfo}
                             skillsInfo={skillsInfo}
                             certificationsInfo={certificationsInfo}
