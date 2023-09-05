@@ -1,6 +1,13 @@
 
 //React Stuff
-import { useState } from "react";
+import { useState , useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+
+//ICONS
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faX} from '@fortawesome/free-solid-svg-icons'
 
 
 //Styles
@@ -24,18 +31,23 @@ import Skills from "../Components/Sections/Skills.jsx";
 import Courses from "../Components/Sections/Courses.jsx";
 import Education from "../Components/Sections/Education.jsx";
 
-import { Link, useLocation } from "react-router-dom";
-
+//Images
 import template1 from "../Assets/template1.png"
 import template2 from "../Assets/template2.png"
 import template3 from "../Assets/template3.png"
 
+//Libraries
+import JsPDF from "jspdf"
+
+
 function ResumeBuilder()
 {
 
+    const cv = useRef(null);
+
     const location = useLocation();
-    const [template, setTemplate] = useState(location.state.id);
-    const [hide,setHide] =useState(false);
+    const [template, setTemplate] = useState(location.state?.id);
+    const [showPopup,setShowPopUp] = useState(false);
     const [languagesInfo,setLanguagesInfo] = useState([]);
     const [personalInfo,setPersonalInfo] = useState({});
     const [skillsInfo,setSkillsInfo] = useState([]);
@@ -45,6 +57,15 @@ function ResumeBuilder()
     const [projectsInfo,setProjectsInfo] = useState([]);
     const [workInfo,setWorkInfo] = useState([]);
     const [educationInfo,setEducationInfo] = useState([]);
+
+
+    const generatePDF = () => {
+        const report = new JsPDF('portrait', 'pt', 'a4');
+        report.html(cv.current).then(() => {
+          report.save('report.pdf');
+        });
+    };
+
 
     function addLanguages(Section) {
         setLanguagesInfo(prevValue => {
@@ -188,12 +209,13 @@ function ResumeBuilder()
 
     function chooseTemplate(id) {
         setTemplate(id);
-        setHide(hide === true ? false : true);
+        setShowPopUp(false);
     }
+
 
     return  <div className={styles.Container}>
                 <div className={styles.Builder}>
-                    {!hide && <>
+        
                     <PersonalInfo addPersonalInfo={addPersonalInfo}/>      
 
                     <Summary/>
@@ -213,27 +235,28 @@ function ResumeBuilder()
                     <Volunteering addVolunteering={addVolunteering} deleteVolunteering={deleteVolunteering} />
 
                     <Skills addSkills={addSkills} deleteSkill={deleteSkill} />
-                    </>}
 
-                    {hide && <div className={styles.templateMenu}>
+                </div>
+
+                <div className={styles.Preview}>
+                    <div className={styles.Controls}>
+                        <button onClick={()=>{setShowPopUp(true)}} className={styles.Choose}>Choose Template</button>
+                        <button className={styles.Download} onClick={generatePDF}>Download As PDF</button>
+                </div>
+
+
+                {showPopup && <div className={styles.templateMenu}>
+                        <FontAwesomeIcon icon={faX} className={styles.xBtn} onClick={() => setShowPopUp(false)} />
                         <h1>Templates</h1>
                         <div className={styles.templates}>
                             <img onClick={()=>{chooseTemplate(1)}} className={styles.template} src={template1} />
                             <img onClick={()=>{chooseTemplate(2)}} className={styles.template} src={template2} />
                             <img onClick={()=>{chooseTemplate(3)}} className={styles.template} src={template3} />
                         </div>
-                    </div>}
-                </div>
-
-                <div className={styles.Preview}>
-                    <div className={styles.Controls}>
-                        <button onClick={()=>{setHide(hide === true ? false : true)}} className={styles.Choose}>Choose Template</button>
-                        <button className={styles.Download}>Download As PDF</button>
-                    </div>
-
+                </div>}
                    
 
-                    <div className={styles.resume}>
+                    <div className={styles.resume} ref={cv}>
                         {
                             template === 1 ?
                             <Template1
