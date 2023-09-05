@@ -1,11 +1,11 @@
 import React from "react";
 import Style from "../Css/SaveCancelBtn.module.css";
 
-function SaveCancelBtn() {
+function SaveCancelBtn(props) {
     return (
             <div className={Style.buttons}>
-                <button className={Style.cancel}>Cancel</button>
-                <button className={Style.save}>Save</button>
+                <button className={Style.cancel} onClick={props.onCancel}>Cancel</button>
+                <button onClick={props.onClick} className={Style.save}>Save</button>
             </div>
     );
 }

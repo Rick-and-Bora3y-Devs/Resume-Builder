@@ -12,6 +12,7 @@
     border: none;
     color: white;
     background-color: #224D61;
+    transition: transform 0.2s;
 }
 
 .cancel {
@@ -21,4 +22,9 @@
     font-weight: 700;
     background-color: white;
     font-family: 'Noto Sans', sans-serif;
+    transition: transform 0.2s;
+}
+
+.save:hover, .cancel:hover {
+    transform: scale(1.05);
 }

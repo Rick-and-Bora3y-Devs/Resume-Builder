@@ -1,8 +1,10 @@
+//React Stuff
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter , RouterProvider  } from 'react-router-dom'
 
-import Test from './Test.jsx'
+//Pages
 import ResumeBuilder from './Pages/ResumeBuilder.jsx'
 import Home from './Pages/Home.jsx'
 import Resumes from './Pages/Resumes.jsx'
@@ -23,10 +25,6 @@ const router = createBrowserRouter(
     {
       path: '/resumes',
       element: <Resumes/>
-    },
-    {
-      path: '/test',
-      element: <Test/>
     }
   ]
 )

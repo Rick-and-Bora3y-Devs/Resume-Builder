@@ -1,79 +1,125 @@
 import React from "react";
 import Style from "./Template3.module.css";
 
-function Template3() {
+function Template1(props) {
     return (
         <div className={Style.container}>
-            <div className={Style.personalInfo}>
-                <h1 className={Style.header1}>Albert Mondego</h1>
-                <p>city, country</p>
-                <p>username@gmail.com • +330 12345678</p>
+        
+
+            {props.personalInfo.firstName && 
+                <div className={Style.personalInfo}>
+                <h1 className={Style.header1}>
+                    {props.personalInfo.firstName + " "}
+                    {props.personalInfo.secondName}
+                </h1>
+                <p>
+                {props.personalInfo.city + ", "
+                + props.personalInfo.country + " • " 
+                + props.personalInfo.phoneNumber + " • " 
+                + props.personalInfo.email}
+                </p>
             </div>
+            }
            
-            <p className={Style.professionalSummaries}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-            Doloremque!
-            </p>
+           {props.summary && <p dangerouslySetInnerHTML={{__html: props.summary}} />}
            
+           {props.workInfo.length > 0 &&
             <div className={Style.workExperience}>
                 <h3 className={Style.header3}>WORK EXPERIENCE</h3>
-                <div><h2 className={Style.header2}>Company name</h2> • 02/2019 - 11/2023</div>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
-                <p>Jot title</p>
-            </div>
+                {props.workInfo.map((info,index)=>(
+                    <div key={index}>
+                    <div>
+                        <h2 className={Style.header2}>{info.Company}</h2> • {info.Start + " - " + info.End}  
+                    </div>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
+                    <p>{info.Position}</p>
+                </div>
+                ))}
+            </div>}
 
+        {props.educationInfo.length > 0 &&        
             <div>
                 <h3 className={Style.header3}>EDUCATION</h3>
-                <h2>field of study</h2>
-                <p>Educational Institution • 09/2022-07/2026</p>
-            </div>
+                {props.educationInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.institute}</h2>
+                    <p>
+                        {info.degree} • 
+                        {info.startDate} - 
+                        {info.endDate}
+                    </p>
+                </div>))}
+            </div>}
 
-            <div className="volunteering">
+            {props.volunteeringInfo.length > 0 &&
+            <div>
                 <h3 className={Style.header3}>Volunteering & leadership</h3>
-                <h2 className={Style.header2}>Organization</h2>
-                <p>involvement • Cairo, Egypt • 03/2021 - 06/2023</p>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
-            </div>
+                {props.volunteeringInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.organization}</h2>
+                    <p>
+                        {info.involvement + " • " + info.startDate + " - " + info.endDate}
+                    </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
+                </div>
+                ))}
+            </div>}
 
-            <div className="skills">
+            {props.skillsInfo.length > 0 && 
+            <div>
                 <h3 className={Style.header3}>SKILLS</h3>
-                <p>skill, skill, skill, skill, skill, skill, 
-                skill, skill, skill, skill, skill, skill, 
-                skill, skill, skill, skill, skill, skill, skill, skill</p>
-            </div>
+                {props.skillsInfo.map((info,index)=><p key={index}>{info.skill}</p>)}
+            </div>}
 
-            <div className="certification">
+            {props.certificationsInfo.length > 0 &&
+            <div>
                 <h3 className={Style.header3}>CERTIFICATIONS</h3>
-                <h2 className={Style.header2}>certification</h2>
-                <p>Provider • 07/2023 - 9/2023</p>
-            </div>
+                {props.certificationsInfo.map((info,index)=>(
+                <div key={index}>
+                    <h2 className={Style.header2}>{info.certification}</h2>
+                    <p>
+                        {info.provider + " • " + info.startDate + " - " + info.endDate}
+                    </p>
+                </div>
+                ))}
+            </div>}
 
-            <div className="projects">
+            {props.projectsInfo.length > 0 && 
+            <div>
                 <h3 className={Style.header3}>PROJECTS</h3>
-                <h2 className={Style.header2}>projects name</h2>
-                <p>Organization • 02/2023 - 04/2023</p>
-                <p className={Style.description}>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi voluptatum ratione quaerat quas mollitia at doloremque a sequi dolorem.
-                Doloremque!</p>
-            </div>
+                {props.projectsInfo.map((info,index)=>(
+                <div key={index}>
+                    <h2 className={Style.header2}>{info.project}</h2>
+                    <p>
+                        {info.organization + " • " + info.startDate + " - " + info.endDate}
+                    </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
+                </div>
+                ))}
+            </div>}
 
+            {props.coursesInfo.length > 0 &&
             <div>
                 <h3 className={Style.header3}>COURSES</h3>
-                <h2 className={Style.header2}>course</h2>
-                <p>Institution • 02/2023 - 09/2023</p>
-            </div>
+                {props.coursesInfo.map((info,index)=>(
+                    <div key={index}>
+                    <h2 className={Style.header2}>{info.course}</h2>
+                    <p>
+                        {info.provider + " • " + info.startDate + " - " + info.endDate}
+                    </p>
+                    <p dangerouslySetInnerHTML={{__html: info.description}} />
+                </div>
+                ))}
+            </div>}
         
-            <div>
+            {props.languageInfo.length > 0 &&
+             <div>
                 <h3 className={Style.header3}>LANGUAGES</h3>
-                <p>language • level</p>
-            </div>
+                    {props.languageInfo.map((info,index)=><p key={index}>{info.language} • {info.proficiency}</p>)}
+            </div>}
+
         </div>
     );
 }
 
-export default Template3;
+export default Template1;

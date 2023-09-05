@@ -52,9 +52,9 @@ html{
 
 .Download{
     color: #355D6F;
-    background-color: white;
+    background-color: transparent;
 
-    border: 1px solid #355D6F;
+    border: 2px solid #355D6F;
     border-radius: 20px;
 
     transition: transform 0.2s;
@@ -69,12 +69,15 @@ html{
 
 .resume{
     background-color: white;
-    border: 1px solid black;
-    transform: translateY(-230px) scaleX(0.45) scaleY(0.45);
-
-    -webkit-box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 19px 2px rgba(0,0,0,0.75);
+    /* border: 1px solid black; */
+    transform: translateY(-235px) scaleX(0.5) scaleY(0.5);
+    /* height: 70%;
+    width: 50%; */
+    min-height: 1000px;
+    min-width: 750px;
+    -webkit-box-shadow: 10px 10px 19px 2px rgba(0, 0, 0, 0.473);
+    -moz-box-shadow: 10px 10px 19px 2px rgba(0, 0, 0, 0.37);
+    box-shadow: 10px 10px 19px 2px rgba(0, 0, 0, 0.384);
 }
 
 
@@ -126,7 +129,7 @@ html{
     gap: 0.1rem;
 }
 
-.Inputs div label {
+.Inputs div label, .descriptionLabel {
     font-size: 0.8rem;
     opacity: 50%;
 }
@@ -154,3 +157,105 @@ html{
 .skill {
     grid-column: 1/-1;
 }
+
+/* Templates Menu */
+
+.templateMenu {
+    position: fixed;
+    top: 10vh;
+    left: 25vw;
+    z-index: 1000;
+    background-color: blue;
+    width: 50vw;
+    height: 80vh;
+    padding: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    border: 10px solid #b5c2c8;
+    border-radius: 20px;
+    background-color: rgb(250, 250, 250);
+
+    -webkit-box-shadow: 7px 10px 71px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 10px 71px -5px rgba(0,0,0,0.75);
+    box-shadow: 7px 10px 71px -5px rgba(0,0,0,0.75);
+    
+
+}
+
+.templates {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.template {
+    padding: 5px;
+    background-color: #b5c2c8;
+    border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.template:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.514);
+    transform: scale(1.1);
+}
+
+.xBtn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    font-size: 1.8rem;
+    padding: 0.5rem;
+
+    transition: all 0.2s;
+}
+
+.xBtn:hover{
+    cursor: pointer;
+    color: red;
+}
+
+
+/* Features */
+
+.formControls {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+.editBtn {
+    border: none;
+    font-family: "Poppins" , serif;
+    background-color: #1A5062;
+    color: white;
+    padding: 5px 30px;
+    border-radius: 10px;
+    
+}
+
+.deleteBtn {
+    border: 1px solid #1A5062;
+    font-family: "Poppins" , serif;
+    padding: 5px 25px;
+    border-radius: 10px;
+
+}
+
+/* input[type="checkbox"].checkbox:checked {
+    border-color: red;
+  background-color:red;
+} */
+
+
+  
+
