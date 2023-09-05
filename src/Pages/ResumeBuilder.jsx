@@ -13,7 +13,6 @@ import { faX} from '@fortawesome/free-solid-svg-icons'
 //Styles
 import styles from "../Css/Resume.module.css";
 
-
 //Templates
 import Template1 from "../Components/Templates/Template1.jsx";
 import Template2 from "../Components/Templates/Template2.jsx";
