@@ -12,6 +12,10 @@ import SaveCancelBtn from "../saveCancelBtn.jsx";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrash , faPenToSquare} from "@fortawesome/free-solid-svg-icons"
+
 const ActionTypes = {
     AddProject: "ADD_Project",
     DeleteProject: "DELETE_Project",
@@ -178,18 +182,19 @@ function Projects(props){
                 <div>
                 {projects.map((project) => (
                     <div key={project.id} className={styles.prev}>
+                    <div className={styles.view}>
                     <input type="checkbox" onChange={(event)=>handleCheck(event, project)} />
                     <div>
-                        <h3>
-                            {project.project} at {project.organization}
-                        </h3>
-                        <h3>
-                            {project.startDate} - {project.endDate}
-                        </h3>
+                        <p>
+                            {project.project} at {project.organization} <br/>
+                            {project.startDate} - {project.endDate} <br/>
+                            <span className={styles.para} dangerouslySetInnerHTML={{__html:project.description}}/>
+                        </p>
+                    </div>
                     </div>
                     <div className={styles.formControls}>
-                        <button className={styles.editBtn} onClick={() => editProject(project)}>Edit</button>
-                        <button className={styles.deleteBtn} onClick={() => deleteProject(project.id)}>Delete</button>
+                        <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editProject(project)} /> 
+                        <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteProject(project.id)} />
                     </div>
                     </div>
                 ))}

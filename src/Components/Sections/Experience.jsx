@@ -7,6 +7,10 @@ import SaveCancelBtn from "../saveCancelBtn.jsx";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash , faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 const ActionTypes = {
   AddExperience: "ADD_EXPERIENC",
   EditExperience: "EDIT_EXPERIENCE",
@@ -116,7 +120,7 @@ function Experience(props) {
                     <input 
                     type="text" 
                     name="Position" 
-                    value={formData.position} 
+                    value={formData.Position} 
                     onChange={handleChange} 
                     placeholder="Position" 
                     />
@@ -127,9 +131,9 @@ function Experience(props) {
                     <input 
                     type="text" 
                     name="Company" 
-                    value={formData.degree} 
+                    value={formData.Company} 
                     onChange={handleChange} 
-                    placeholder="Degree"
+                    placeholder="Company"
                     />
                 </div>
 
@@ -139,7 +143,7 @@ function Experience(props) {
                         <input 
                         type="text" 
                         name="Start" 
-                        value={formData.startDate} 
+                        value={formData.Start} 
                         onChange={handleChange} 
                         placeholder="Start Date"
                         />
@@ -149,7 +153,7 @@ function Experience(props) {
                         <input 
                         type="text" 
                         name="End" 
-                        value={formData.endDate} 
+                        value={formData.End} 
                         onChange={handleChange} 
                         placeholder="End Date" 
                         />
@@ -177,19 +181,20 @@ function Experience(props) {
     <div>
       {experiences.map((experience) => (
         <div key={experience.id} className={styles.prev}>
-          <input type="checkbox" onChange={(event)=>handleCheck(event, experience)}/>
-          <div>
-            <h3>
-              {experience.Position} at {experience.Company}
-            </h3>
-            <h3>{experience.City}</h3>
-            <h3>
-              {experience.Start} - {experience.End}
-            </h3>
+          <div className={styles.view}>
+            <input type="checkbox" onChange={(event)=>handleCheck(event, experience)}/>
+            <div>
+              <p>                                                                            
+                {experience.Position} at {experience.Company} <br/>
+                {experience.City} <br/>
+                {experience.Start} - {experience.End} <br/>
+                <span className={styles.para} dangerouslySetInnerHTML={{__html:experience.description}}></span>
+              </p>  
+            </div>
           </div>
           <div className={styles.formControls}>
-            <button className={styles.editBtn} onClick={() => editExperience(experience)}>Edit</button>
-            <button className={styles.deleteBtn} onClick={() => deleteExperience(experience.id)}>Delete</button>
+            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editExperience(experience)}/>
+            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteExperience(experience.id)}/>
           </div>
         </div>
       ))}

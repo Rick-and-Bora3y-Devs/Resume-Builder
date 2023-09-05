@@ -8,6 +8,10 @@ import styles from "../../Css/resume.module.css";
 import AddBtn from "../AddBtn.jsx";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare , faTrash } from "@fortawesome/free-solid-svg-icons";
+
 const ActionTypes = {
     AddSkill: "ADD_Skill",
     DeleteSkill: "DELETE_SKill",
@@ -96,19 +100,21 @@ function Skills(props){
 
         {/* Skills */}
 
-        <div>
+        <div className={styles.skillSet}>
             {skills.map((skill) => (
                 <div key={skill.id} className={styles.prev}>
-                <input type="checkbox" onChange={(event)=>handleCheck(event, skill)} />
-                <div>
-                    <h3>
-                        {skill.skill} 
-                    </h3>
-                </div>
-                <div className={styles.formControls}>
-                    <button className={styles.editBtn} onClick={() => editSkill(skill)}>Edit</button>
-                    <button className={styles.deleteBtn} onClick={() => deleteSkill(skill.id)}>Delete</button>
-                </div>
+                    <div className={styles.view}>
+                        <input type="checkbox" onChange={(event)=>handleCheck(event, skill)} />
+                        <div>
+                            <p>
+                                {skill.skill} 
+                            </p>
+                        </div>
+                    </div>
+                    <div className={styles.formControls}>
+                        <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editSkill(skill)} /> 
+                        <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteSkill(skill.id)} />
+                    </div>
                 </div>
             ))}
         </div>

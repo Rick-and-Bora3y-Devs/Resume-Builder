@@ -256,6 +256,76 @@ html{
   background-color:red;
 } */
 
+.prev{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    transition: all 0.2s;
+}
 
+
+.prev::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #868788; /* Color of the border */
+    transition: all 0.2s; /* Animation duration and easing */
+  }
   
+.prev:hover::before {
+    width: 100%; /* Height of the border when hovered */
+}
 
+
+
+.view{
+    display: flex;
+    gap: 1rem;
+
+    line-height: 1.1;
+    justify-content: space-around;
+
+    font-size: 0.8rem;
+}  
+
+
+.edit , .delete{
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.edit:hover{
+    color: blue;
+}
+
+.delete:hover{
+    color: red;
+}
+
+
+.para{
+    display: block;
+    font-size: 0.8rem;
+    overflow: hidden;
+    max-width: 470px;
+    color: #868788;
+}
+
+.skillSet{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.skillSet > div{
+    width: 250px;
+    border-left: 3px solid black;
+}

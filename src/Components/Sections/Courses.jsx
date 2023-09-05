@@ -12,6 +12,10 @@ import SaveCancelBtn from "../saveCancelBtn.jsx";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash , faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 const ActionTypes = {
     AddCourse: "ADD_COURSE",
     DeleteCourse: "DELETE_COURSE",
@@ -174,19 +178,21 @@ function Courses(props) {
         <div>
             {courses.map((course) => (
                 <div key={course.id} className={styles.prev}>
-                <input type="checkbox" onChange={(event)=>handleCheck(event, course)}/>
-                <div>
-                    <h3>
-                        {course.course} at {course.provider}
-                    </h3>
-                    <h3>
-                        {course.startDate} - {course.endDate}
-                    </h3>
-                </div>
-                <div className={styles.formControls}>
-                    <button className={styles.editBtn} onClick={() => editCourse(course)}>Edit</button>
-                    <button className={styles.deleteBtn} onClick={() => deleteCourse(course.id)}>Delete</button>
-                </div>
+                    <div className={styles.view}>
+                        <input type="checkbox" onChange={(event)=>handleCheck(event, course)}/>
+                        <div>
+                            <p>
+                                {course.course} at {course.provider} <br/>
+                                {course.startDate} - {course.endDate} <br/>
+                                <span dangerouslySetInnerHTML={{ __html: course.description }} className={styles.para}></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className={styles.formControls}>
+                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editCourse(course)} /> 
+                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteCourse(course.id)} />
+                    </div>
                 </div>
             ))}
         </div>

@@ -3,7 +3,7 @@ import Style from "./Template2.module.css";
 
 function Template1(props) {
     return (
-        <div className={Style.container}>
+        <div className={Style.container} ref={props.pref}>
         
 
             {props.personalInfo.firstName && 

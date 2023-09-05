@@ -7,8 +7,9 @@ import styles from "../../Css/resume.module.css";
 
 //Components
 import AddBtn from "../AddBtn.jsx";
-import TextEditor from "../TextEditor";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash , faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 
 const ActionTypes = {
@@ -165,18 +166,18 @@ function Certifactes(props){
                 <div>
                     {certificates.map((certificate) => (
                         <div key={certificate.id} className={styles.prev}>
-                        <input type="checkbox" onChange={(event)=>handleCheck(event, certificate)} />
-                        <div>
-                            <h3>
-                                {certificate.certification} at {certificate.provider}
-                            </h3>
-                            <h3>
-                                {certificate.startDate} - {certificate.endDate}
-                            </h3>
+                        <div className={styles.view}>
+                            <input type="checkbox" onChange={(event)=>handleCheck(event, certificate)} />
+                            <div>
+                                <p>
+                                    {certificate.certification} at {certificate.provider} <br/>
+                                    {certificate.startDate} - {certificate.endDate}
+                                </p>
+                            </div>
                         </div>
                         <div className={styles.formControls}>
-                            <button className={styles.editBtn} onClick={() => editCertificate(certificate)}>Edit</button>
-                            <button className={styles.deleteBtn} onClick={() => deleteCertificate(certificate.id)}>Delete</button>
+                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editCertificate(certificate)} /> 
+                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteCertificate(certificate.id)} />
                         </div>
                         </div>
                     ))}

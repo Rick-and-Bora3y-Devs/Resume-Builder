@@ -9,7 +9,6 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX} from '@fortawesome/free-solid-svg-icons'
 
-
 //Styles
 import styles from "../Css/Resume.module.css";
 
@@ -60,6 +59,7 @@ function ResumeBuilder()
 
 
     const generatePDF = () => {
+        console.log(cv.current)
         const report = new JsPDF('portrait', 'pt', 'a4');
         report.html(cv.current).then(() => {
           report.save('report.pdf');
@@ -267,10 +267,10 @@ function ResumeBuilder()
                 </div>}
                    
 
-                    <div className={styles.resume} ref={cv}>
+                    <div className={styles.resume} >
                         {
-                            template === 1 ?
-                            <Template1
+                            template === 1 ? 
+                            <Template1 pref={cv}
                             summary={summary}
                             languageInfo={languagesInfo}
                             personalInfo={personalInfo}
@@ -283,7 +283,7 @@ function ResumeBuilder()
                             educationInfo={educationInfo}
                             /> : 
                             template === 2 ?
-                            <Template2 
+                            <Template2 pref={cv}
                             summary={summary}
                             languageInfo={languagesInfo}
                             personalInfo={personalInfo}
@@ -295,7 +295,7 @@ function ResumeBuilder()
                             workInfo={workInfo}
                             educationInfo={educationInfo}
                             /> :
-                            <Template3 
+                            <Template3 pref={cv}
                             summary={summary}
                             languageInfo={languagesInfo}
                             personalInfo={personalInfo}

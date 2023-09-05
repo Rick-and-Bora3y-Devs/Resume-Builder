@@ -8,6 +8,10 @@ import styles from "../../Css/resume.module.css";
 import AddBtn from "../AddBtn.jsx";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash , faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 
 const ActionTypes = {
     AddEducation: "ADD_Education",
@@ -174,22 +178,22 @@ function Education(props){
             <div>
                 {educations.map((education,index) => (
                     <div key={education.id} className={styles.prev}>
-                    <input key={index} type="checkbox" onChange={(event)=>handleCheck(event ,education)}/>
-                    <div>
-                        <h3>
-                        {education.degree} at {education.institute}
-                        </h3>
-                        <h3>{education.city}</h3>
-                        <h3>
-                        {education.startDate} - {education.endDate}
-                        </h3>
+                        <div className={styles.view}>
+                            <input key={index} type="checkbox" onChange={(event)=>handleCheck(event ,education)}/>
+                            <div>
+                                <p>
+                                    {education.degree} at {education.institute} <br/>
+                                    {education.city} <br/>
+                                    {education.startDate} - {education.endDate} <br/>
+                                </p>
+                            </div>
+                        </div>
+                        <div className={styles.formControls}>
+                            <FontAwesomeIcon className={styles.edit} onClick={() => editEducation(education)} />
+                            <FontAwesomeIcon className={styles.delete} onClick={() => deleteEducation(education.id)}/>
+                        </div>
                     </div>
-                    <div className={styles.formControls}>
-                        <button className={styles.editBtn} onClick={() => editEducation(education)}>Edit</button>
-                        <button className={styles.deleteBtn} onClick={() => deleteEducation(education.id)}>Delete</button>
-                    </div>
-                    </div>
-                ))}
+                 ))}
             </div>
             {/* End Educations */}
 

@@ -12,6 +12,12 @@ import SaveCancelBtn from "../saveCancelBtn.jsx";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrash , faPenToSquare} from "@fortawesome/free-solid-svg-icons"
+
+
 const ActionTypes = {
     AddVolunteering: "ADD_Volunteering",
     DeleteVolunteering: "DELETE_Volunteering",
@@ -179,18 +185,19 @@ function Voulnteering(props){
         <div>
             {volunteerings.map((volunteering) => (
                 <div key={volunteering.id} className={styles.prev}>
-                    <input type="checkbox" onChange={(event)=>handleCheck(event, volunteering)} />
-                    <div>
-                        <h3>
-                            {volunteering.organization} at {volunteering.involvement}
-                        </h3>
-                        <h3>
-                            {volunteering.startDate} - {volunteering.endDate}
-                        </h3>
+                    <div className={styles.view}>
+                        <input type="checkbox" onChange={(event)=>handleCheck(event, volunteering)} />
+                        <div>
+                            <p>
+                                {volunteering.organization} at {volunteering.involvement} <br/>
+                                {volunteering.startDate} - {volunteering.endDate} <br/>
+                                <span className={styles.para} dangerouslySetInnerHTML={{__html:volunteering.description}} />
+                            </p>
+                        </div>
                     </div>
                     <div className={styles.formControls}>
-                        <button className={styles.editBtn} onClick={() => editVolunteering(volunteering)}>Edit</button>
-                        <button className={styles.deleteBtn} onClick={() => deleteVolunteering(volunteering.id)}>Delete</button>
+                        <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editVolunteering(volunteering)}/>
+                        <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteVolunteering(volunteering.id)}/>
                     </div>
                 </div>
             ))}

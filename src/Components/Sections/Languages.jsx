@@ -8,11 +8,9 @@ import styles from "../../Css/Resume.module.css";
 import AddBtn from "../AddBtn.jsx";
 import SaveCancelBtn from "../saveCancelBtn.jsx";
 
-
-
-
-
-
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash , faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 
 const ActionTypes = {
@@ -135,15 +133,17 @@ function Languages(props){
         <div>
             {languages.map((language) => (
                 <div key={language.id} className={styles.prev}>
-                    <input className={styles.checkbox} type="checkbox" onChange={(event) => handleCheck(event, language)} />
-                    <div>
-                        <h3>
-                            {language.language} at {language.proficiency}
-                        </h3>
+                    <div  className={styles.view}>
+                        <input className={styles.checkbox} type="checkbox" onChange={(event) => handleCheck(event, language)} />
+                        <div>
+                            <p>
+                                {language.language} at {language.proficiency}
+                            </p>
+                        </div>
                     </div>
                     <div className={styles.formControls}>
-                        <button className={styles.editBtn} onClick={() => editLanguage(language)}>Edit</button>
-                        <button className={styles.deleteBtn} onClick={() => deleteLanguage(language.id)}>Delete</button>
+                            <FontAwesomeIcon icon={faPenToSquare} className={styles.edit} onClick={() => editCertificate(certificate)} /> 
+                            <FontAwesomeIcon icon={faTrash} className={styles.delete} onClick={() => deleteCertificate(certificate.id)} />
                     </div>
                 </div>
             ))}
