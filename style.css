@@ -19,6 +19,8 @@ body{
 }
 
 .btn {
+    font-weight: 600;
+
     color: white;
     background-color: #1A5062;
     padding: 15px 60px;
@@ -26,7 +28,7 @@ body{
     border-radius: 10px;
     font-size: 1rem;
 
-    box-shadow: 0 0 1rem #1A5062;
+    box-shadow: 2px 6px 1rem #1a506294;
     transition: transform 0.2s;
 }
 

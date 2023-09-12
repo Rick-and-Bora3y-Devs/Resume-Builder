@@ -41,11 +41,56 @@
     width: 60%;
 }
 
-.logo {
-    color: #1A5062;
-    font-family: "Poppins" , serif;
-    font-weight: 600;
+.navbar {
+    display: flex;
     position: absolute;
     left: 10%;
     top: 10%;
+   
+    width: 60vw;
+    justify-content: space-between;
+    color: white;
+}
+
+.logo {
+    color: #1A5062;
+    font-family: "Poppins" , serif;
+    font-weight: 800;
+}
+
+.links {
+    display: flex;
+    gap: 30px;
+}
+
+.signUp {
+    font-weight: 800;
+    font-family: "Poppins" , serif;
+
+    color: #355D6F;
+    background-color: transparent;
+
+    border: 2px solid #355D6F;
+    border-radius: 20px;
+
+    transition: transform 0.2s;
+    padding: 10px 20px;
+}
+
+.login {
+    font-weight: 800;
+    font-family: "Poppins" , serif;
+
+    color: white;
+    background-color: #355D6F;
+
+    border: none;
+    border-radius: 20px;
+
+    transition: transform 0.2s;
+    padding: 10px 30px;
+}
+
+.login:hover , .signUp:hover {
+    transform: scale(1.05);
 }
