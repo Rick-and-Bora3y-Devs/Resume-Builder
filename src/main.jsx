@@ -10,6 +10,9 @@ import Home from './Pages/Home.jsx'
 import Resumes from './Pages/Resumes.jsx'
 import Error from './Error.jsx'
 
+import Login from './Pages/Login.jsx'
+import SignUp from './Pages/SignUp.jsx'
+
 
 const router = createBrowserRouter(
   [
@@ -25,6 +28,14 @@ const router = createBrowserRouter(
     {
       path: '/resumes',
       element: <Resumes/>
+    },
+    {
+      path: '/login',
+      element: <Login/>
+    },
+    {
+      path: '/signUp',
+      element: <SignUp/>
     }
   ]
 )
